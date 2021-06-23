@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<div th:insert="fragments/head :: navbar"></div>
+
+
+<h1 style="color: #000000;">Details of :<h1 style="color: #000000" th:text="${game.getTitle()}"></h1></h1>
+
+<div class="row">
+    <div class="classcontainer col-md-8 offset-2 " style="margin-top: 80px">
+        <table class="table table-hover table-dark" style="margin-top: 150px">
+
+            <thead>
+            <tr>
+                <th data-field="id" style="text-align:center">Type</th>
+                <th data-field="id" style="text-align:center">Title</th>
+                <th data-field="id" style="text-align:center">Price</th>
+                <th data-field="id" style="text-align:center">Publisher</th>
+                <th data-field="id" style="text-align:center">Game Genre</th>
+                <th data-field="id" style="text-align:center">Minimum Age</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th th:text="${game.getType()}"></th>
+                <td th:text="${game.getTitle()}"></td>
+                <td th:text="${game.getPrice()}"></td>
+                <td th:text="${game.getPublisher()}"></td>
+                <td th:text="${game.getGameGenre()}"></td>
+                <td th:text="${game.getMinimumAge()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
