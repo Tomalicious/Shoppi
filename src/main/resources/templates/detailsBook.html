@@ -23,6 +23,7 @@
                 <th data-field="id" style="text-align: center">ISBN</th>
                 <th data-field="id" style="text-align: center">Description</th>
                 <th data-field="id" style="text-align: center">Subject</th>
+                <th data-field="Delete" style="text-align:center">Delete Book</th>
             </tr>
             </thead>
             <tbody>
@@ -35,6 +36,9 @@
                 <td th:text="${book.getIsbn()}"></td>
                 <td th:text="${book.getDescription()}"></td>
                 <td th:text="${subject}"></td>
+                <td style="text-align:center">
+                    <a th:href="@{/removeArticle/{id}(id=${book.getId()})}"><span class="material-icons">delete</span></a>
+                </td>
             </tr>
             </tbody>
         </table>

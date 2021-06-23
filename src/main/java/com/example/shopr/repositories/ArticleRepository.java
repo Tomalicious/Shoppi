@@ -1,10 +1,7 @@
 package com.example.shopr.repositories;
 
 
-import com.example.shopr.domain.Article;
-import com.example.shopr.domain.Book;
-import com.example.shopr.domain.Game;
-import com.example.shopr.domain.Lp;
+import com.example.shopr.domain.*;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -31,24 +28,31 @@ public class ArticleRepository {
 //
     public List<Article> findAll() {
         List<Article> articleList = new ArrayList<>();
-        List<Game> gamesList = entityManager.createQuery("select g from Game g", Game.class).getResultList();
-        List<Lp> lpList = entityManager.createQuery("select l from Lp l", Lp.class).getResultList();
-        List<Book> bookList = entityManager.createQuery("select b from Book b", Book.class).getResultList();
-        articleList.addAll(gamesList);
+        List<Game> gamesList = entityManager.createQuery("select g from Game g order by g.type , g.title , g.publisher, g.price ", Game.class).getResultList();
+        List<Lp> lpList = entityManager.createQuery("select l from Lp l order by l.type , l.title, l.publisher , l.price", Lp.class).getResultList();
+        List<Book> bookList = entityManager.createQuery("select b from Book b order by b.type , b.title , b.author , b.publisher , b.price", Book.class).getResultList();
         articleList.addAll(bookList);
+        articleList.addAll(gamesList);
         articleList.addAll(lpList);
         return articleList;
     }
+
     @Transactional
     public void addBook(Book newBook) {
         entityManager.persist(newBook);
     }
+
     @Transactional
     public void addGame(Game newGame) {
         entityManager.persist(newGame);
     }
+
     @Transactional
     public void addLp(Lp newLp) {
         entityManager.persist(newLp);
+    }
+    @Transactional
+    public void removeArticle(Article article) {
+        entityManager.remove(article);
     }
 }

@@ -17,6 +17,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
+@Inheritance
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"title" , "publisher"}))
 public class Game extends Article {
 

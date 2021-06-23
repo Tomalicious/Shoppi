@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import static java.lang.Integer.parseInt;
 
 @Controller
 public class DetailsController {
@@ -42,5 +45,9 @@ public class DetailsController {
         }
     }
 
-
+    @GetMapping(value = "/removeArticle/{id}")
+    public String deleteBook(@PathVariable("id") Long id) {
+        detailService.removeArticleById(id);
+        return "redirect:/";
+    }
 }

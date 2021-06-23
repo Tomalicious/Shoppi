@@ -10,13 +10,14 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 
 @DiscriminatorColumn(name = "type")
-@DiscriminatorValue(value = "GAME")
+@DiscriminatorValue(value = "LP")
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
 @Entity
+@Inheritance
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"title" , "performer"}))
 
 public class Lp extends Article{

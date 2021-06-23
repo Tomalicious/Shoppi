@@ -129,7 +129,7 @@ td,
 th {
     padding: 10px;
     border: 1px solid #ccc;
-    text-align: left;
+    text-align: center;
 }
 
 td:nth-of-type(1) {

@@ -21,6 +21,7 @@
                 <th data-field="id" style="text-align:center">Publisher</th>
                 <th data-field="id" style="text-align:center">Lp Genre</th>
                 <th data-field="id" style="text-align:center">Performer</th>
+                <th data-field="id" style="text-align:center">Delete Lp</th>
             </tr>
             </thead>
             <tbody>
@@ -31,6 +32,10 @@
                 <td th:text="${lp.getPublisher()}"></td>
                 <td th:text="${lp.getLpGenre()}"></td>
                 <td th:text="${lp.getPerformer()}"></td>
+                <td style="text-align:center">
+                    <a th:href="@{/removeArticle/{id}(id=${game.getId()})}"><span
+                            class="material-icons">delete</span></a>
+                </td>
             </tr>
             </tbody>
         </table>

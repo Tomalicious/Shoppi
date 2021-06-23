@@ -39,8 +39,8 @@
 
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
-                <label for="currentCar" class="form-label">Current Car</label>
-                <select class="form-control" name="currentCar" id="currentCar" th:field="*{lpGenre}">
+                <label for="lpGenre" class="form-label">Lp Genre</label>
+                <select class="form-control" name="lpGenre" id="lpGenre" th:field="*{lpGenre}">
                     <option th:each="genre :${genreList}" th:text="${genre}" th:value="${newLp.lpGenre}"></option>
                 </select>
             </div>
