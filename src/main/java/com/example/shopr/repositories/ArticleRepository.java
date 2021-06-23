@@ -39,5 +39,16 @@ public class ArticleRepository {
         articleList.addAll(lpList);
         return articleList;
     }
-
+    @Transactional
+    public void addBook(Book newBook) {
+        entityManager.persist(newBook);
+    }
+    @Transactional
+    public void addGame(Game newGame) {
+        entityManager.persist(newGame);
+    }
+    @Transactional
+    public void addLp(Lp newLp) {
+        entityManager.persist(newLp);
+    }
 }

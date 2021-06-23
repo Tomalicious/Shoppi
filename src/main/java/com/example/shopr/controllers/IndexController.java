@@ -46,8 +46,12 @@ public class IndexController {
             model.addAttribute("newBook" , new Type());
             return "addingWhichBooks";
         } else if (newArticle.getNumber().equals("2")) {
+            model.addAttribute("genreList" , LpGenre.values());
+            model.addAttribute("newLp" , new Lp());
             return "addingLp";
         } else {
+            model.addAttribute("genreList" , GameGenre.values());
+            model.addAttribute("newGame" , new Game());
             return "addingGame";
         }
     }
@@ -70,6 +74,30 @@ public class IndexController {
     }
     @GetMapping(value = "addingGame")
     public String addingGamePage(Model model) {
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "/addedBook")
+    public String add(@ModelAttribute BookFiction newBook) {
+        articleService.addBook(newBook);
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "/addedNonFictiveBook")
+    public String add(@ModelAttribute BookNonFiction newBook) {
+        articleService.addBook(newBook);
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "/addedGame")
+    public String add(@ModelAttribute Game newGame) {
+        articleService.addGame(newGame);
+        return "redirect:/";
+    }
+
+    @PostMapping(value = "/addedLp")
+    public String add(@ModelAttribute Lp  newLp) {
+        articleService.addLp(newLp);
         return "redirect:/";
     }
 
