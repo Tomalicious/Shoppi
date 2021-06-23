@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<div th:insert="fragments/head :: navbar"></div>
+
+
+<h1 style="color: #710c0f;">Details of <h1 style="color: #710c0f" th:text="${book.getTitle()}"></h1> </h1>
+
+<div class="row">
+    <div class="classcontainer col-md-8 offset-2 " style="margin-top: 80px">
+        <table class="table table-hover table-dark" style="margin-top: 150px">
+
+            <thead>
+            <tr>
+                <th data-field="id" style="text-align:center">Type</th>
+                <th data-field="id" style="text-align:center">Title</th>
+                <th data-field="id" style="text-align:center">Price</th>
+                <th data-field="id" style="text-align:center">Publisher</th>
+                <th data-field="id" style="text-align: center">Author</th>
+                <th data-field="id" style="text-align: center">ISBN</th>
+                <th data-field="id" style="text-align: center">Description</th>
+                <th data-field="id" style="text-align: center">Genre</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th th:text="${book.getType()}"></th>
+                <td th:text="${book.getTitle()}"></td>
+                <td th:text="${book.getPrice()}"></td>
+                <td th:text="${book.getPublisher()}"></td>
+                <td th:text="${book.getAuthor()}"></td>
+                <td th:text="${book.getIsbn()}"></td>
+                <td th:text="${book.getDescription()}"></td>
+                <td th:text="${book.getBookGenre()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

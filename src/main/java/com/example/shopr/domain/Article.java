@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class Article {
+public abstract class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,7 @@ public class Article {
     private String type;
     private String title;
     private Double price;
+    private String publisher;
     private String supplierId;
 
 

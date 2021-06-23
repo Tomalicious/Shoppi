@@ -1,0 +1,3 @@
+INSERT INTO book ( id ,type , price ,publisher, supplier_id , title , author , isbn , pages ,  book_genre , description , subject) values (1 , 'FICTION' , 10.99 , 'Tommeke' ,3 , 'Twilight' , 'JKJK' , '978-90-1234-567-8' , 150 , 'FANTASY' , 'Once upon a time..' , null),(3 , 'NON FICTION' , 10.99 , 'Tommeke' ,3 , 'Der Untergang' , 'JKJK' , '978-90-1234-567-8' , 150 , 'FANTASY' , 'Once upon a time..' , 'OTHER')
+INSERT INTO game(`type`,`id`,`price`, `supplier_id`, `title`, `game_genre`, `minimum_age`,`publisher`)VALUES( 'GAME', 2 , 59.99 , 3 , 'World On Fire' , 'MMORPG' , 12 , 'Blizzard')
+INSERT INTO user(id , user_name , password) VALUES (1 , 'tomtom' , 'tomtom'),(2 , 'timtim' , 'timtim')

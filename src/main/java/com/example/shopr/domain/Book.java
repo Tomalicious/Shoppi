@@ -11,14 +11,14 @@ import javax.persistence.*;
 
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @DiscriminatorColumn(name ="type")
 @Data
 @Entity
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book extends Article {
+public abstract class Book extends Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

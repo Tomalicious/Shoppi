@@ -4,13 +4,10 @@ package com.example.shopr.domain;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 
-@DiscriminatorValue(value = "NON_FICTION")
+@DiscriminatorValue(value = "NON FICTION")
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
@@ -18,7 +15,8 @@ import javax.persistence.Enumerated;
 @SuperBuilder
 @Entity
 public class BookNonFiction extends Book {
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Subject subject;
+    private String description;
 
 }

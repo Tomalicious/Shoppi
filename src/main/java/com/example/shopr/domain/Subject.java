@@ -1,5 +1,8 @@
 package com.example.shopr.domain;
 
+import lombok.Getter;
+
+@Getter
 public enum Subject {
-    HISTRORY, COOKBOOK , SCIENCE , SPORT;
+    HISTORY, COOKBOOK , SCIENCE , SPORT , OTHER;
 }

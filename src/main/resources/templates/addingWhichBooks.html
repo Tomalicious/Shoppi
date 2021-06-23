@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<div th:insert="fragments/head :: navbar"></div>
+
+
+<h1 style="color: #710c0f;">Is It Fiction Or Non-Fiction</h1>
+
+<form method="post" th:action="@{/addingBook}" th:object="${newBook}" style="margin-top: 20px">
+        <div class="row">
+            <div class="col-md-4 form-row offset-md-2">
+                <label for="articleType" class="form-label">Article Type</label>
+                <select class="form-control" name="number" id="articleType" required>
+                    <option th:each="book :${allBooks}" th:text="${book.getName()}" th:value="${book.getNumber()}">
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-4 offset-md-2">
+            <button id="submitbnt" type="submit" class="form-control btn btn-primary" style="background-color: #710c0f;" >Submit</button>
+        </div>
+    </div>
+</form>
+
+
+
+</body>
+</html>

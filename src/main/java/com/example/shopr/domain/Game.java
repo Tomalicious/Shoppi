@@ -20,9 +20,8 @@ import javax.persistence.*;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"title" , "publisher"}))
 public class Game extends Article {
 
-    private String publisher;
     private int minimumAge;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private GameGenre gameGenre;
 
 }
