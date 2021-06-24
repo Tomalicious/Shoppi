@@ -22,6 +22,7 @@
                 <th data-field="id" style="text-align:center">Game Genre</th>
                 <th data-field="id" style="text-align:center">Minimum Age</th>
                 <th data-field="id" style="text-align:center">Delete Game</th>
+                <th data-field="Delete" style="text-align:center">Add To Cart</th>
             </tr>
             </thead>
             <tbody>
@@ -33,8 +34,13 @@
                 <td th:text="${game.getGameGenre()}"></td>
                 <td th:text="${game.getMinimumAge()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/removeArticle/{id}(id=${game.getId()})}"><span
+                    <a th:href="@{/removeArticle/{id}/{type}(id=${game.getId()},type=${game.getType()} )}"><span
                             class="material-icons">delete</span></a>
+                </td>
+                <td style="text-align:center">
+                    <a th:href="@{/shopArticle/{id}/{type}(id=${game.getId()},type=${game.getType()} )}"><span class="material-icons-outlined">
+add_shopping_cart
+</span></a>
                 </td>
             </tr>
             </tbody>

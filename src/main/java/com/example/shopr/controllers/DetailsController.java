@@ -18,11 +18,11 @@ public class DetailsController {
     @Autowired
     private DetailService detailService;
 
-    @GetMapping(value = "detailedArticle/{id}")
-    public String showDetailsPage(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("lp", detailService.findById(id));
-        if (detailService.findById(id).getClass() == BookFiction.class || detailService.findById(id).getClass() == BookNonFiction.class) {
-            Book book = (Book) detailService.findById(id);
+    @GetMapping(value = "detailedArticle/{id}/{type}")
+    public String showDetailsPage(Model model, @PathVariable("id") Long id , @PathVariable("type") String type) {
+        model.addAttribute("lp", detailService.findById(id , type));
+        if (detailService.findById(id , type).getClass() == BookFiction.class || detailService.findById(id , type).getClass() == BookNonFiction.class) {
+            Book book = (Book) detailService.findById(id , type);
             if(book.getType().equals("FICTION")){
                 BookFiction bookfiction = (BookFiction) book;
                 model.addAttribute("book" , bookfiction);
@@ -34,20 +34,20 @@ public class DetailsController {
                 return "detailsBook";
             }
         }
-        else if (detailService.findById(id).getClass() == Game.class) {
-            Game game = (Game) detailService.findById(id);
+        else if (detailService.findById(id , type).getClass() == Game.class) {
+            Game game = (Game) detailService.findById(id , type);
             model.addAttribute("game" , game);
             return "detailsGame";
         }else {
-            Lp lp = (Lp) detailService.findById(id);
+            Lp lp = (Lp) detailService.findById(id , type);
             model.addAttribute("lp" , lp);
             return "detailsLp";
         }
     }
 
-    @GetMapping(value = "/removeArticle/{id}")
-    public String deleteBook(@PathVariable("id") Long id) {
-        detailService.removeArticleById(id);
+    @GetMapping(value = "/removeArticle/{id}/{type}")
+    public String deleteBook(@PathVariable("id") Long id , @PathVariable("type") String type) {
+        detailService.removeArticleById(id , type);
         return "redirect:/";
     }
 }

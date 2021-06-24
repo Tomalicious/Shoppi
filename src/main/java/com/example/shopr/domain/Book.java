@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -24,6 +25,8 @@ public abstract class Book extends Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String author;
+    @Pattern(regexp="^.*$" , message = "ISBN must be correctly formatted.")
+    @Column(unique = true)
     private String isbn;
     private Integer pages;
 

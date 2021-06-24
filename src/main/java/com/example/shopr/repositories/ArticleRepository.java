@@ -55,4 +55,5 @@ public class ArticleRepository {
     public void removeArticle(Article article) {
         entityManager.remove(article);
     }
+
 }

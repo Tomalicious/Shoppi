@@ -26,6 +26,7 @@ public abstract class Article {
     private Double price;
     private String publisher;
     private String supplierId;
+    private Integer stock;
 
 
 }

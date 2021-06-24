@@ -1,10 +1,7 @@
 package com.example.shopr.services;
 
 
-import com.example.shopr.domain.Article;
-import com.example.shopr.domain.Book;
-import com.example.shopr.domain.Game;
-import com.example.shopr.domain.Lp;
+import com.example.shopr.domain.*;
 import com.example.shopr.repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +28,9 @@ public class ArticleService {
 
     public void addLp(Lp newLp) {
         articleRepository.addLp(newLp);
+    }
+
+    public List<Article> findByParams(DetailParams detailSearch) {
+        return null;
     }
 }

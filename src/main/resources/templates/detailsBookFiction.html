@@ -24,6 +24,8 @@
                 <th data-field="id" style="text-align: center">Description</th>
                 <th data-field="id" style="text-align: center">Genre</th>
                 <th data-field="Delete" style="text-align:center">Delete Book</th>
+                <th data-field="Delete" style="text-align:center">Add To Cart</th>
+
             </tr>
             </thead>
             <tbody>
@@ -37,8 +39,13 @@
                 <td th:text="${book.getDescription()}"></td>
                 <td th:text="${book.getBookGenre()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/removeArticle/{id}(id=${book.getId()})}"><span
+                    <a th:href="@{/removeArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span
                             class="material-icons">delete</span></a>
+                </td>
+                <td style="text-align:center">
+                    <a th:href="@{/shopArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span class="material-icons-outlined">
+add_shopping_cart
+</span></a>
                 </td>
             </tr>
             </tbody>

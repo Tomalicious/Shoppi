@@ -40,8 +40,8 @@
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
             <label for="gameGenre" class="form-label" >Current Car</label>
-            <select class="form-control" name="gameGenre" id="gameGenre" th:field="*{gameGenre}">
-                <option th:each="genre :${genreList}" th:text="${genre}" th:value="${newGame.gameGenre}"></option>
+            <select class="form-control" name="gameGenre" id="gameGenre">
+                <option th:each="genre :${genreList}" th:text="${genre}" th:value="${genre}"></option>
             </select>
         </div>
     </div>

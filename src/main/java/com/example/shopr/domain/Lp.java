@@ -21,6 +21,11 @@ import javax.persistence.*;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"title" , "performer"}))
 
 public class Lp extends Article{
+
+
+    @Id
+    @GeneratedValue
+    Long id;
     private String performer;
     @Enumerated
     private LpGenre lpGenre;

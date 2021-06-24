@@ -10,12 +10,12 @@ public class DetailService {
     @Autowired
     private ArticleRepository articleRepository;
 
-    public Article findById(Long id) {
-       return articleRepository.findAll().stream().filter(article -> article.getId() == id).findFirst().get();
+    public Article findById(Long id , String type) {
+       return articleRepository.findAll().stream().filter(article -> (article.getId() == id && article.getType().equals(type))).findFirst().get();
 
     }
 
-    public void removeArticleById(Long id) {
-        articleRepository.removeArticle(articleRepository.findAll().stream().filter(article -> article.getId() == id).findFirst().get());
+    public void removeArticleById(Long id , String type) {
+        articleRepository.removeArticle(articleRepository.findAll().stream().filter(article -> (article.getId() == id&& article.getType().equals(type))).findFirst().get());
     }
 }
