@@ -111,7 +111,6 @@ public class IndexController {
         model.addAttribute("allArticles" , articleService.getAll());
         return "detailedSearch";
     }
-
 }
 
 

@@ -21,6 +21,7 @@
                 <th data-field="id" style="text-align:center">Publisher</th>
                 <th data-field="id" style="text-align:center">Lp Genre</th>
                 <th data-field="id" style="text-align:center">Performer</th>
+                <th data-field="id" style="text-align:center">Available Stock</th>
                 <th data-field="id" style="text-align:center">Delete Lp</th>
                 <th data-field="Delete" style="text-align:center">Add To Cart</th>
             </tr>
@@ -33,6 +34,7 @@
                 <td data-field="id" style="text-align:center" th:text="${lp.getPublisher()}"></td>
                 <td data-field="id" style="text-align:center" th:text="${lp.getLpGenre()}"></td>
                 <td data-field="id" style="text-align:center" th:text="${lp.getPerformer()}"></td>
+                <td data-field="id" style="text-align:center" th:text="${lp.getStock()}"></td>
                 <td  style="text-align:center">
                     <a th:href="@{/removeArticle/{id}/{type}(id=${lp.getId()},type=${lp.getType()} )}"><span
                             class="material-icons">delete</span></a>
