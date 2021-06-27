@@ -24,8 +24,8 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    private List<Book> bookList;
+    @ManyToMany
+    private List<Article> bookList;
 
     @OneToMany
     private List<Lp> lpList;
