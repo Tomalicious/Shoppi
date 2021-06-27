@@ -27,6 +27,6 @@ public abstract class Article {
     private String publisher;
     private String supplierId;
     private Integer stock;
-
+    private Integer orderQuantity;
 
 }

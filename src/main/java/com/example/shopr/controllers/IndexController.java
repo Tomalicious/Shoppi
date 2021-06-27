@@ -4,6 +4,7 @@ package com.example.shopr.controllers;
 import com.example.shopr.domain.*;
 import com.example.shopr.services.ArticleService;
 import com.example.shopr.services.DetailService;
+import com.example.shopr.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +25,30 @@ public class IndexController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private UserService userService;
+
+
     @GetMapping(value = "/")
     public String showIndex(Model model) {
-        model.addAttribute("allArticles", articleService.getAll());
+        model.addAttribute("users" , userService.getUsers());
+        model.addAttribute("newUser" , new User());
         return "index";
     }
+
+    @PostMapping(value = "/chosenUser")
+    public String splitProgram(Model model , @ModelAttribute User user){
+        if(user.getId() == 1){
+            model.addAttribute("allArticles" , articleService.getAll());
+            return "allArticlesEmp";
+        }else {
+            model.addAttribute("allArticles" ,articleService.getAll());
+            return "allArticlesClient";
+        }
+    }
+
+
+
 
     @GetMapping(value = "addingArticles")
     public String addArticlePage(Model model) {

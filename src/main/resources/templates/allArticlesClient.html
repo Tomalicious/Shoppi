@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<div th:insert="fragments/head :: navbarClient"></div>
+
+
+<h1 style="color: #710c0f;">Welcome To Shopr</h1>
+
+<h2 class="offset-md-2"> If you want a more detailed search click <a style="color: white" th:href="@{/detailedSearchOnParam}" class="btn btn-dark py-3 px-4">here</a></h2>
+
+
+    <div class="row" style="color: black; text-decoration: solid; font-size: larger">
+    <div class="classcontainer col-md-8 offset-2 " style="margin-top: 80px">
+        <table class="table responsive table-dark" id="sort" style="margin-top: 150px">
+
+            <thead>
+            <tr>
+                <th data-field="id" style="text-align:center">Id</th>
+                <th data-field="id" style="text-align:center">Type</th>
+                <th data-field="id" style="text-align:center">Title</th>
+                <th data-field="id" style="text-align:center">Price</th>
+                <th data-field="id" style="text-align:center">Publisher</th>
+                <th data-field="id" style="text-align:center">Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${allArticles}">
+
+                <th th:text="${article.getId()}"></th>
+                <th th:text="${article.getType()}"></th>
+                <td th:text="${article.getTitle()}"></td>
+                <td th:text="${article.getPrice()}"></td>
+                <td th:text="${article.getPublisher()}"></td>
+                <td style="text-align:center">
+                    <a th:href="@{detailedArticleClient/{id}/{type}(id=${article.getId()},type=${article.getType()})}"><span class="material-icons">details</span></a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js'></script>
+<script  src="function.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#sort").DataTable({
+            columnDefs : [
+                { type : 'date', targets : [3] }
+            ],
+        });
+    });
+</script>
+</body>
+</html>

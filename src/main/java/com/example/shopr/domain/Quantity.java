@@ -15,6 +15,4 @@ import javax.persistence.Entity;
 public class Quantity {
 
     private Integer quantity;
-
-
 }

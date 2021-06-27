@@ -45,9 +45,40 @@ public class DetailsController {
         }
     }
 
+
+    @GetMapping(value = "detailedArticleClient/{id}/{type}")
+    public String showDetailsPageClient(Model model, @PathVariable("id") Long id , @PathVariable("type") String type) {
+        model.addAttribute("lp", detailService.findById(id , type));
+        if (detailService.findById(id , type).getClass() == BookFiction.class || detailService.findById(id , type).getClass() == BookNonFiction.class) {
+            Book book = (Book) detailService.findById(id , type);
+            if(book.getType().equals("FICTION")){
+                BookFiction bookfiction = (BookFiction) book;
+                model.addAttribute("book" , bookfiction);
+                return "clientDetailsBookFiction";
+            }else {
+                BookNonFiction bookNonFiction = (BookNonFiction) book;
+                model.addAttribute("book" , bookNonFiction);
+                model.addAttribute("subject" , bookNonFiction.getSubject());
+                return "clientDetailsBook";
+            }
+        }
+        else if (detailService.findById(id , type).getClass() == Game.class) {
+            Game game = (Game) detailService.findById(id , type);
+            model.addAttribute("game" , game);
+            return "clientDetailsGame";
+        }else {
+            Lp lp = (Lp) detailService.findById(id , type);
+            model.addAttribute("lp" , lp);
+            return "clientDetailsLp";
+        }
+    }
+
     @GetMapping(value = "/removeArticle/{id}/{type}")
     public String deleteBook(@PathVariable("id") Long id , @PathVariable("type") String type) {
         detailService.removeArticleById(id , type);
         return "redirect:/";
     }
+
+
+
 }
