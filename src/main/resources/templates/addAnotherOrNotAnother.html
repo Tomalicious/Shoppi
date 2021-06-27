@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
+
 </head>
 <body>
 
@@ -9,7 +10,7 @@
 
 <h1 style="color: #710c0f;">Add Or Complete?<Article></Article></h1>
 
-<form method="post" th:action="@{/paymentPage/{id}/{type}(id = ${article.getId()} , type = ${article.getType()})}" th:object="${newQuantity}" style="margin-top: 20px">
+<form method="post" th:action="@{/paymentPage/{id}/{type}/{orderId}(id = ${article.getId()} , type = ${article.getType()} , orderId= ${orders})}" th:object="${newQuantity}" style="margin-top: 20px">
 
 
     <div class="row" style="margin-top: 15px">
@@ -20,13 +21,13 @@
 
     <div class="row" style="margin-top: 15px">
         <div class="col-md-4 offset-md-2">
-            <a th:href="@{/allArticlesClientAddAnother/{orderId}(orderId = ${order.getId()})}" id="addAnother" class="form-control btn btn-primary" style="background-color: #710c0f;" >Add another item</a>
+            <a th:href="@{/allArticlesClientAddAnother/{orderId}(orderId = ${order})}" id="addAnother" class="form-control btn btn-primary" style="background-color: #710c0f;" >Add another item</a>
         </div>
     </div>
 
     <div class="row" style="margin-top: 15px">
         <div class="col-md-4 offset-md-2">
-            <a th:href="@{/allArticlesClient/{orderId}(orderId = ${order.getId()})}" id="cancel" class="form-control btn btn-primary" style="background-color: #710c0f;" >Cancel Order</a>
+            <a th:href="@{/allArticlesClient/{orderId}(orderId = ${order})}" id="cancel" class="form-control btn btn-primary" style="background-color: #710c0f;" >Cancel Order</a>
         </div>
     </div>
 

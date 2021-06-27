@@ -15,7 +15,7 @@
 <form method="post" th:action="@{/chosenUser}" th:object="${newUser}" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
-            <label for="user" class="form-label">Article Type</label>
+            <label for="user" class="form-label">Select user type</label>
             <select class="form-control" name="id" id="user" required>
                 <option th:each="user :${users}" th:text="${user.getUser()}" th:value="${user.getId()}">
             </select>

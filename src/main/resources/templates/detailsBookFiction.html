@@ -24,6 +24,7 @@
                 <th data-field="id" style="text-align: center">Description</th>
                 <th data-field="id" style="text-align: center">Genre</th>
                 <th data-field="id" style="text-align: center">Available Stock</th>
+                <th data-field="edit" style="text-align: center">Edit Book</th>
                 <th data-field="Delete" style="text-align:center">Delete Book</th>
 
             </tr>
@@ -39,6 +40,9 @@
                 <td th:text="${book.getDescription()}"></td>
                 <td th:text="${book.getBookGenre()}"></td>
                 <td th:text="${book.getStock()}"></td>
+                <td style="text-align:center">
+                    <a th:href="@{/editArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span class="material-icons">edit</span></a>
+                </td>
                 <td style="text-align:center">
                     <a th:href="@{/removeArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span
                             class="material-icons">delete</span></a>

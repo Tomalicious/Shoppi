@@ -1,14 +1,13 @@
 package com.example.shopr.repositories;
 
 
-import com.example.shopr.domain.Orders;
+import com.example.shopr.domain.*;
 import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 public class OrderRepository {
@@ -28,7 +27,37 @@ public class OrderRepository {
 
     }
 
+    @Transactional
     public void remove(Long orderId) {
         entityManager.remove(findById(orderId));
+    }
+
+    @Transactional
+    public void addBookNonToOrder(BookNonFiction bookList, Long id) {
+        entityManager.merge(bookList);
+    }
+
+    @Transactional
+    public void addBookFictionToOrder(BookFiction bookFiction, Long id) {
+        Query query = entityManager.createQuery("update ");
+        query.setParameter("id" , bookFiction.getId());
+        query.executeUpdate();
+    }
+
+    @Transactional
+    public void addLpListToOrder(List<Lp> lpList, Long id) {
+        entityManager.persist(lpList);
+    }
+
+
+    @Transactional
+    public void addGameToOrder(Game game, Long id) {
+        entityManager.persist(game);
+    }
+
+
+    @Transactional
+    public void newOrder(Orders orders) {
+        entityManager.persist(orders);
     }
 }

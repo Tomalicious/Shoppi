@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<div th:insert="fragments/head :: navbar"></div>
+<div th:insert="fragments/head :: navbarClient"></div>
 
 
 <h1 style="color: #710c0f;">Details of <h1 style="color: #710c0f" th:text="${book.getTitle()}"></h1> </h1>
@@ -22,10 +22,10 @@
                 <th data-field="id" style="text-align: center">Author</th>
                 <th data-field="id" style="text-align: center">ISBN</th>
                 <th data-field="id" style="text-align: center">Description</th>
-                <th data-field="id" style="text-align: center">Subject</th>
+                <th data-field="id" style="text-align: center">Genre</th>
                 <th data-field="id" style="text-align: center">Available Stock</th>
-                <th data-field="edit" style="text-align: center">Edit Book</th>
-                <th data-field="Delete" style="text-align:center">Delete Book</th>
+                <th data-field="Delete" style="text-align:center">Add To Cart</th>
+
             </tr>
             </thead>
             <tbody>
@@ -37,16 +37,13 @@
                 <td th:text="${book.getAuthor()}"></td>
                 <td th:text="${book.getIsbn()}"></td>
                 <td th:text="${book.getDescription()}"></td>
-                <td th:text="${subject}"></td>
+                <td th:text="${book.getBookGenre()}"></td>
                 <td th:text="${book.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/editArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span class="material-icons">edit</span></a>
+                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}(id=${book.getId()},type=${book.getType()} , orderId = ${order})}"><span class="material-icons-outlined">
+add_shopping_cart
+</span></a>
                 </td>
-                <td style="text-align:center">
-                    <a th:href="@{/removeArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span class="material-icons">delete</span></a>
-                </td>
-
-
             </tr>
             </tbody>
         </table>

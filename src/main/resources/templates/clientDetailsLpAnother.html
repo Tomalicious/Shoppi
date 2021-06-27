@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<div th:insert="fragments/head :: navbar"></div>
+<div th:insert="fragments/head :: navbarClient"></div>
 
 
 <h1 style="color: #710c0f;">Details of :<h1 style="color: #710c0f" th:text="${lp.getTitle()}"></h1> </h1>
@@ -22,8 +22,6 @@
                 <th data-field="id" style="text-align:center">Lp Genre</th>
                 <th data-field="id" style="text-align:center">Performer</th>
                 <th data-field="id" style="text-align:center">Available Stock</th>
-                <th data-field="id" style="text-align:center">Delete Lp</th>
-                <th data-field="edit" style="text-align: center">Edit Lp</th>
                 <th data-field="Delete" style="text-align:center">Add To Cart</th>
             </tr>
             </thead>
@@ -37,11 +35,9 @@
                 <td data-field="id" style="text-align:center" th:text="${lp.getPerformer()}"></td>
                 <td data-field="id" style="text-align:center" th:text="${lp.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/editArticle/{id}/{type}(id=${lp.getId()},type=${lp.getType()} )}"><span class="material-icons">edit</span></a>
-                </td>
-                <td  style="text-align:center">
-                    <a th:href="@{/removeArticle/{id}/{type}(id=${lp.getId()},type=${lp.getType()} )}"><span
-                            class="material-icons">delete</span></a>
+                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}(id=${lp.getId()},type=${lp.getType()}, orderId = ${order} )}"><span class="material-icons-outlined">
+add_shopping_cart
+</span></a>
                 </td>
             </tr>
             </tbody>

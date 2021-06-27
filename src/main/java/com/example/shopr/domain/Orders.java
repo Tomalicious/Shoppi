@@ -17,6 +17,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "Orders")
 public class Orders {
 
 
@@ -25,7 +26,10 @@ public class Orders {
     private Long id;
 
     @OneToMany
-    private List<Book> bookList;
+    private List<BookFiction> bookFictionList;
+
+    @OneToMany
+    private List<BookNonFiction> bookNonList;
 
     @OneToMany
     private List<Lp> lpList;

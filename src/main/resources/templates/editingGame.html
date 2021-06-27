@@ -7,9 +7,9 @@
 <div th:insert="fragments/head :: navbar"></div>
 
 
-<h1 style="color: #710c0f;">Adding A Fictive Book</h1>
+<h1 style="color: #710c0f;">Editing A Game</h1>
 
-<form method="post"  th:action="@{/addedBook}" th:object="${newBook}" style="margin-top: 20px">
+<form method="post"  th:action="@{/editingGame/{id}/{type}(id =${games.getId()} , type =${games.getType()})}" th:object="${newGame}" style="margin-top: 20px">
     <div>
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
@@ -31,30 +31,17 @@
         </div>
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
-                <label for="author" class="form-label">Author</label>
-                <input  id="author" class="form-control" placeholder="Author" name="author" required>
+                <label for="minimumAge" class="form-label">Minimum Age</label>
+                <input  id="minimumAge" class="form-control" placeholder="Minimum Age" name="minimumAge" required>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="isbn" class="form-label">Isbn (format example = "978-90-1234-567-8")</label>
-                <input  id="isbn" class="form-control" placeholder="format : 978-90-1234-567" name="isbn" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="description" class="form-label">Description</label>
-                <input  id="description" class="form-control" placeholder="Description" name="description" required>
-            </div>
-        </div>
-
     </div>
 
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
-            <label for="bookGenre" class="form-label" >Current Car</label>
-            <select class="form-control" name="bookGenre" id="bookGenre">
-                <option th:each="genre :${genreList}" th:text="${genre}" th:value="${genre}"></option>
+            <label for="gameGenre" class="form-label" >Current Car</label>
+            <select class="form-control" name="gameGenre" id="gameGenre">
+                <option th:each="genre :${gameGenres}" th:text="${genre}" th:value="${genre}"></option>
             </select>
         </div>
     </div>
@@ -63,20 +50,6 @@
         <div class="col-md-4 form-row offset-md-2">
             <label for="supplierId" class="form-label">Id Of The Supplier</label>
             <input id="supplierId" class="form-control" placeholder="Supplier Id" name="supplierId">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 form-row offset-md-2">
-            <label for="pages" class="form-label">Price</label>
-            <input id="pages" class="form-control" placeholder="Pages" name="pages" required>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4 form-row offset-md-2">
-            <label for="stock" class="form-label">Price</label>
-            <input id="stock" class="form-control" placeholder="Stock" name="stock" required>
         </div>
     </div>
 
