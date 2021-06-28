@@ -6,8 +6,6 @@ import com.example.shopr.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class OrderService {
     
@@ -18,8 +16,8 @@ public class OrderService {
         orderRepository.addOrder(orders);
     }
 
-    public void remove(Long orderId) {
-        orderRepository.remove(orderId);
+    public void remove(Orders orders) {
+        orderRepository.remove(orders);
     }
 
     public void addBookNonFictionToOrder(BookNonFiction bookNonFiction, Long id) {
@@ -35,11 +33,23 @@ public class OrderService {
 
     }
 
-    public void addLpListToOrder(List<Lp> lpList, Long id) {
-        orderRepository.addLpListToOrder(lpList , id);
+    public void addLpListToOrder(Lp lp, Long id) {
+        orderRepository.addLpListToOrder(lp, id);
     }
 
     public void newOrder(Orders orders) {
         orderRepository.newOrder(orders);
+    }
+
+    public Orders getOrder(Long orderId) {
+        return orderRepository.getOrder(orderId);
+    }
+
+    public void updateOrder(Orders orders) {
+        orderRepository.updateOrder(orders);
+    }
+
+    public void removeById(Long orderId) {
+        orderRepository.removeById(orderId);
     }
 }

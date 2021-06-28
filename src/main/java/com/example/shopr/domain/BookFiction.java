@@ -16,10 +16,9 @@ import javax.persistence.*;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
+@Embeddable
 public class BookFiction extends Book{
     @Enumerated(EnumType.STRING)
     private BookGenre bookGenre;
     private String description;
-
-
 }

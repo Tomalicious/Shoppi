@@ -39,7 +39,7 @@
                 <td th:text="${subject}"></td>
                 <td th:text="${book.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}(id=${book.getId()},type=${book.getType()} , orderId = ${order})}"><span class="material-icons-outlined">add_shopping_cart</span></a>
+                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}/{userId}(id=${book.getId()},type=${book.getType()} , orderId = ${orders}, userId=${userId})}"><span class="material-icons-outlined">add_shopping_cart</span></a>
                 </td>
 
 

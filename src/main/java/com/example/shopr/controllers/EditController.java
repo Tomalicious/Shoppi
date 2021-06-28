@@ -2,6 +2,7 @@ package com.example.shopr.controllers;
 
 
 import com.example.shopr.domain.*;
+import com.example.shopr.services.ArticleService;
 import com.example.shopr.services.DetailService;
 import com.example.shopr.services.EditService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class EditController {
     @Autowired
     private EditService editService;
 
+    @Autowired
+    private ArticleService articleService;
+
     @GetMapping(value = "/editArticle/{id}/{type}")
     public String editBook(Model model, @PathVariable("id") Long id, @PathVariable("type") String type) {
         if (detailService.findById(id, type).getClass() == BookFiction.class) {
@@ -28,7 +32,6 @@ public class EditController {
             BookFiction book = (BookFiction) detailService.findById(id , type);
             model.addAttribute("books" , book);
             model.addAttribute("genreList" , BookGenre.values());
-            model.addAttribute("subjectList", Subject.values());
 
             return "editingFictiveBook";
         } else if(detailService.findById(id, type).getClass() == BookNonFiction.class) {
@@ -54,27 +57,31 @@ public class EditController {
     }
 
     @PostMapping(value = "/editBookFiction/{id}/{type}")
-    public String editBook(@ModelAttribute BookFiction bookFiction) {
+    public String editBook(@ModelAttribute BookFiction bookFiction , Model model) {
         editService.updateBook(bookFiction);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @PostMapping(value = "/editBookNon/{id}/{type}")
-    public String editBookNon(@ModelAttribute BookNonFiction bookNonFiction) {
+    public String editBookNon(@ModelAttribute BookNonFiction bookNonFiction , Model model) {
         editService.updateBookNon(bookNonFiction);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @PostMapping(value = "/editingGame/{id}/{type}")
-    public String editGame(@ModelAttribute Game game) {
+    public String editGame(@ModelAttribute Game game , Model model) {
         editService.updateGame(game);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @PostMapping(value = "/editingLp/{id}/{type}")
-    public String editLp(@ModelAttribute Lp lp) {
+    public String editLp(@ModelAttribute Lp lp , Model model) {
         editService.updateLp(lp);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
 

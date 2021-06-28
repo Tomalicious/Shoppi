@@ -35,7 +35,7 @@
                 <td data-field="id" style="text-align:center" th:text="${lp.getPerformer()}"></td>
                 <td data-field="id" style="text-align:center" th:text="${lp.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticle/{id}/{type}(id=${lp.getId()},type=${lp.getType()} )}"><span class="material-icons-outlined">
+                    <a th:href="@{/shopArticle/{id}/{type}/userId(id=${lp.getId()},type=${lp.getType()}, userId=${userId} )}"><span class="material-icons-outlined">
 add_shopping_cart
 </span></a>
                 </td>

@@ -5,19 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
 import javax.persistence.*;
-import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.List;
-
+import java.time.ZonedDateTime;
+import java.util.*;
 
 @Data
 @Entity
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Orders")
+@Table(name = "orders")
 public class Orders {
 
 
@@ -25,17 +22,22 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany
-    private List<BookFiction> bookFictionList;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<BookFiction > bookFictionList;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BookNonFiction> bookNonList;
 
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Lp> lpList;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Game> gamesList;
 
-    private Date orderDate;
+    private ZonedDateTime orderDate;
+
+    private Boolean isPayed;
+
 }

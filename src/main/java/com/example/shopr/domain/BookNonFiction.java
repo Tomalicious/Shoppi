@@ -14,9 +14,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
+@Embeddable
 public class BookNonFiction extends Book {
     @Enumerated(EnumType.STRING)
     private Subject subject;
     private String description;
+
+
 
 }

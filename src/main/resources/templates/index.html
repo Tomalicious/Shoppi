@@ -9,19 +9,24 @@
 
 <h1 style="color: #710c0f;">Welcome To Shopr</h1>
 
-<h2 class="offset-md-2"> Please log in as user or as Employee</h2>
+<h2 class="offset-md-2"> Please log in</h2>
 
+
+<h2 class="offset-md-2"> Please log in </h2>
 
 <form method="post" th:action="@{/chosenUser}" th:object="${newUser}" style="margin-top: 20px">
+
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
-            <label for="user" class="form-label">Select user type</label>
-            <select class="form-control" name="id" id="user" required>
-                <option th:each="user :${users}" th:text="${user.getUser()}" th:value="${user.getId()}">
-            </select>
+            <label for="user2" class="form-label">Username</label>
+            <input id="user2" class="form-control" placeholder="User" name="user" required>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-4 form-row offset-md-2">
+            <label for="password2" class="form-label">Password</label>
+            <input  id="password2" type="password" class="form-control" placeholder="Password" name="password" required>
+        </div>
     </div>
 
     <div class="row" style="margin-top: 15px">
@@ -31,6 +36,58 @@
     </div>
 </form>
 
+<h2 style="margin-top: 50px" class="offset-md-2">Register as new Client</h2>
+
+<form  method="post" th:action="@{/register}" th:object="${registerNewUser}"
+      style="margin-top: 20px;margin-bottom: 250px">
+    <div>
+        <div class="row">
+            <div class="col-md-4 form-row offset-md-2">
+                <label for="firstName" class="form-label">First Name</label>
+                <input id="firstName" class="form-control" placeholder="First name" name="firstName" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-row offset-md-2">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input id="lastName" class="form-control" placeholder="Last Name" name="lastName" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-row offset-md-2">
+                <label for="age" class="form-label">Age</label>
+                <input id="age" class="form-control" placeholder="Age" name="age" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 form-row offset-md-2">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" placeholder="Email" name="email" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4 form-row offset-md-2">
+            <label for="user1" class="form-label">Username</label>
+            <input id="user1" class="form-control" placeholder="User" name="user" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-row offset-md-2">
+            <label for="password" class="form-label">Password</label>
+            <input  id="password" class="form-control" placeholder="Password" name="password" required>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-4 offset-md-2">
+            <button id="submit" type="submit" class="form-control btn btn-primary"
+                    style="background-color: #710c0f;">Submit
+            </button>
+        </div>
+    </div>
+</form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>

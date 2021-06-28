@@ -3,6 +3,7 @@ package com.example.shopr.controllers;
 
 import com.example.shopr.domain.*;
 import com.example.shopr.services.ArticleService;
+import com.example.shopr.services.ContactService;
 import com.example.shopr.services.DetailService;
 import com.example.shopr.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,26 +29,39 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ContactService contactService;
+
 
     @GetMapping(value = "/")
     public String showIndex(Model model) {
         model.addAttribute("users" , userService.getUsers());
         model.addAttribute("newUser" , new User());
+        model.addAttribute("registerNewUser" , new User());
         return "index";
     }
 
     @PostMapping(value = "/chosenUser")
-    public String splitProgram(Model model , @ModelAttribute User user){
-        if(user.getId() == 1){
+    public String splitProgram(Model model , @ModelAttribute User newUser){
+        if(userService.findPass(newUser.getUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUser()).equals(Authorization.EMPLOYEE)){
             model.addAttribute("allArticles" , articleService.getAll());
+
             return "allArticlesEmp";
-        }else {
+        }else if(userService.findPass(newUser.getUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUser()).equals(Authorization.CLIENT)){
             model.addAttribute("allArticles" ,articleService.getAll());
+            model.addAttribute("userId" , userService.findId(newUser.getUser()));
             return "allArticlesClient";
+        }else {
+            return "error2";
         }
     }
 
-
+    @PostMapping(value = "/register")
+    public String register(Model model , @ModelAttribute User registerNewUser){
+        registerNewUser.setAuthorization(Authorization.valueOf("CLIENT"));
+        contactService.saveContact(registerNewUser);
+        return "redirect:/";
+    }
 
 
     @GetMapping(value = "addingArticles")

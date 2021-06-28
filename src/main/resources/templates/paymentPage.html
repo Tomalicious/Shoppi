@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+<body>
+
+<div th:insert="fragments/head :: navbarClient"></div>
+
+
+<h1 style="color: #710c0f;">Please enter your information and confirm orders</h1>
+
+<div class="row" style="color: black; text-decoration: solid; font-size: larger">
+    <div class="classcontainer col-md-8 offset-2 " style="margin-top: 80px">
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th data-field="id" style="text-align:center">Type</th>
+                <th data-field="id" style="text-align:center">Title</th>
+                <th data-field="id" style="text-align:center">Publisher</th>
+                <th data-field="id" style="text-align:center">Price per Unit</th>
+                <th data-field="id" style="text-align:center">Amount of Units</th>
+                <th data-field="id" style="text-align:center">Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="article : ${allArticles}">
+                <th th:text="${article.getType()}"></th>
+                <th th:text="${article.getTitle()}"></th>
+                <td th:text="${article.getPublisher()}"></td>
+                <td th:text="${article.getPrice()}"></td>
+                <td th:text="${article.getOrderQuantity()}"></td>
+                <td th:text="${totalPrices.get(allArticles.indexOf(article))}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 15px">
+    <div class="col-md-4 offset-md-2">
+        <h2 style="color: #710c0f;">Total price is <h2 th:text="${totalOrder}"></h2></h2>
+        <a th:href="@{/payed/{orderId}/{userId}(orderId = ${orders.getId()}, userId=${userId})}"
+           id="addAnother" class="form-control btn btn-primary active" style="background-color: #710c0f;">Checkout</a>
+    </div>
+</div>
+
+
+</body>
+</html>

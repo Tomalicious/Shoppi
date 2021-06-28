@@ -40,7 +40,7 @@
                 <td th:text="${book.getBookGenre()}"></td>
                 <td th:text="${book.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span class="material-icons-outlined">
+                    <a th:href="@{/shopArticle/{id}/{type}/{userId}(id=${book.getId()},type=${book.getType()},userId =${userId} )}"><span class="material-icons-outlined">
 add_shopping_cart
 </span></a>
                 </td>

@@ -18,11 +18,14 @@ import javax.persistence.*;
 @SuperBuilder
 @Entity
 @Inheritance
+@Embeddable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"title" , "publisher"}))
 public class Game extends Article {
 
     private int minimumAge;
     @Enumerated(EnumType.STRING)
+
     private GameGenre gameGenre;
+
 
 }

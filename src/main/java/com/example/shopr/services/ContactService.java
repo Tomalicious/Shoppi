@@ -1,5 +1,6 @@
 package com.example.shopr.services;
 import com.example.shopr.domain.User;
+import com.example.shopr.repositories.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +12,9 @@ public class ContactService {
     @Autowired
     private JavaMailSender jms;
 
+    @Autowired
+    private ContactRepository contactRepository;
+
     public void sendMail(User newContact){
         SimpleMailMessage email = new SimpleMailMessage();
         email.setFrom(newContact.getEmail());
@@ -20,4 +24,9 @@ public class ContactService {
         jms.send(email);
     }
 
+    public void saveContact(User registerNewUser) {
+
+        contactRepository.saveContact(registerNewUser);
+
+    }
 }

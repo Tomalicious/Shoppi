@@ -1,18 +1,21 @@
 package com.example.shopr.repositories;
 
 
+import com.example.shopr.domain.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
+import javax.transaction.Transactional;
 
 @Repository
-public class DetailRepository {
-
-
+public class ContactRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Transactional
+    public void saveContact(User registerNewUser) {
+        entityManager.persist(registerNewUser);
+    }
 }

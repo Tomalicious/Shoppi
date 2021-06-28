@@ -18,6 +18,7 @@ import javax.persistence.*;
 @SuperBuilder
 @Entity
 @Inheritance
+@Embeddable
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"title" , "performer"}))
 
 public class Lp extends Article{
@@ -29,5 +30,8 @@ public class Lp extends Article{
     private String performer;
     @Enumerated
     private LpGenre lpGenre;
+
+
+
 
 }

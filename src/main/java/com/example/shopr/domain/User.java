@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.List;
 
 @EqualsAndHashCode
 @Data
@@ -15,19 +16,29 @@ import javax.persistence.*;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name ="user")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String user;
+    @Column(nullable = false)
     private String password;
 
 
     private String firstName;
     private String lastName;
     private String email;
+    private Integer age;
     private String message;
+
+    @Enumerated(EnumType.STRING)
+    private Authorization authorization;
+
+    @OneToMany(orphanRemoval=true ,fetch = FetchType.EAGER)
+    private List<Orders> orderList;
 
 }

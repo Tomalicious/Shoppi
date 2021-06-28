@@ -35,7 +35,7 @@
                 <td th:text="${game.getMinimumAge()}"></td>
                 <td th:text="${game.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}(id=${game.getId()},type=${game.getType()} , orderId = ${order})}"><span class="material-icons-outlined">
+                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}/{userId}(id=${game.getId()},type=${game.getType()} , orderId = ${orders}, userId=${userId})}"><span class="material-icons-outlined">
 add_shopping_cart
 </span></a>
                 </td>

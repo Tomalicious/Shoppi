@@ -8,9 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import static java.lang.Integer.parseInt;
 
 @Controller
 public class DetailsController {
@@ -46,29 +43,33 @@ public class DetailsController {
     }
 
 
-    @GetMapping(value = "detailedArticleClient/{id}/{type}")
-    public String showDetailsPageClient(Model model, @PathVariable("id") Long id , @PathVariable("type") String type) {
+    @GetMapping(value = "detailedArticleClient/{id}/{type}/{userId}")
+    public String showDetailsPageClient(Model model, @PathVariable("id") Long id , @PathVariable("type") String type, @PathVariable("userId") Long userId) {
         model.addAttribute("lp", detailService.findById(id , type));
         if (detailService.findById(id , type).getClass() == BookFiction.class || detailService.findById(id , type).getClass() == BookNonFiction.class) {
             Book book = (Book) detailService.findById(id , type);
             if(book.getType().equals("FICTION")){
                 BookFiction bookfiction = (BookFiction) book;
                 model.addAttribute("book" , bookfiction);
+                model.addAttribute("userId" , userId);
                 return "clientDetailsBookFiction";
             }else {
                 BookNonFiction bookNonFiction = (BookNonFiction) book;
                 model.addAttribute("book" , bookNonFiction);
                 model.addAttribute("subject" , bookNonFiction.getSubject());
+                model.addAttribute("userId" , userId);
                 return "clientDetailsBook";
             }
         }
         else if (detailService.findById(id , type).getClass() == Game.class) {
             Game game = (Game) detailService.findById(id , type);
             model.addAttribute("game" , game);
+            model.addAttribute("userId" , userId);
             return "clientDetailsGame";
         }else {
             Lp lp = (Lp) detailService.findById(id , type);
             model.addAttribute("lp" , lp);
+            model.addAttribute("userId" , userId);
             return "clientDetailsLp";
         }
     }

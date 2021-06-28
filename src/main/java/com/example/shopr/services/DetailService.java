@@ -16,6 +16,6 @@ public class DetailService {
     }
 
     public void removeArticleById(Long id , String type) {
-        articleRepository.removeArticle(articleRepository.findAll().stream().filter(article -> (article.getId() == id&& article.getType().equals(type))).findFirst().get());
+        articleRepository.removeArticle(articleRepository.findAll().stream().filter(article -> (article.getId() == id && article.getType().equals(type))).findFirst().get());
     }
 }

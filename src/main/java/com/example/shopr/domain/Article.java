@@ -20,13 +20,16 @@ public abstract class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(insertable = false, updatable = false)
+    @Column(insertable = false, updatable = false , nullable = false)
     private String type;
+    @Column(nullable = false)
     private String title;
+    @Column(nullable = false)
     private Double price;
     private String publisher;
     private String supplierId;
     private Integer stock;
     private Integer orderQuantity;
+    private Long order_id;
 
 }
