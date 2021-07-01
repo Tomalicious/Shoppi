@@ -1,5 +1,4 @@
 package com.example.shopr.controllers;
-
 import com.example.shopr.domain.*;
 import com.example.shopr.services.ArticleService;
 import com.example.shopr.services.DetailService;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +45,18 @@ public class BasketController {
 
     @GetMapping(value = "/shopArticleAnother/{id}/{type}/{orderId}/{userId}")
     public String showBasketAnother(Model model, @PathVariable("id") Long id, @PathVariable("type") String type, @PathVariable("orderId") Long orderId, @PathVariable("userId") Long userId) {
+
+        orderService.getAllByOrder(orderId , id , type);
+        //Integer quantity = 0;
+        //
+        //        if(orderService.getQuantityOfOrdered(orderId) != null){
+        //            quantity = orderService.getQuantityOfOrdered(orderId);
+        //        }else {
+        //            quantity = 1;
+        //        }
+
+
+
         model.addAttribute("article", detailService.findById(id, type));
         model.addAttribute("newQuantity", new Quantity());
         List<Quantity> quantityList = new ArrayList<>();
@@ -62,8 +72,8 @@ public class BasketController {
     @PostMapping(value = "/addingAnotherOrProceed/{id}/{type}/{userId}")
     public String showProceedOrAdd(Model model, @PathVariable("id") Long id, @PathVariable("type") String type, @PathVariable("userId") Long userId, @ModelAttribute Quantity quantity) {
         Orders orders = new Orders();
-//        orders.setOrderDate(ZonedDateTime.now());
-//        orders.setIsPayed(false);
+        orders.setOrderDate(ZonedDateTime.now());
+        orders.setIsPayed(false);
         orderService.newOrder(orders);
 
         return this.showProceedOrAddAnother(model, id, type, orders.getId(), userId, quantity);
@@ -157,7 +167,6 @@ public class BasketController {
 
     @GetMapping(value = "/allArticlesClients/{orderId}/{userId}")
     public String showArticlesAsClient(Model model, @PathVariable("orderId") Long orderId, @PathVariable("userId") Long userId) {
-
         orderService.remove(orderService.getOrder(orderId));
         model.addAttribute("allArticles", articleService.getAll());
         return "allArticlesClient";
@@ -197,6 +206,7 @@ public class BasketController {
         Orders orders = orderService.getOrder(orderId);
         orders.setIsPayed(true);
         orders.setOrderDate(ZonedDateTime.now());
+        orders.setUsers(userService.findById(userId));
         orderService.updateOrder(orders);
         User user = userService.findById(userId);
 
@@ -206,11 +216,7 @@ public class BasketController {
     @GetMapping(value = "/chosenUser2/{userId}")
     public String splitProgramAfterSale(Model model, @PathVariable("userId") Long userId) {
         model.addAttribute("allArticles", articleService.getAll());
+        model.addAttribute("userId" , userId);
         return "allArticlesClient";
     }
 }
-
-
-
-//
-//    @PostMapping(value = "")

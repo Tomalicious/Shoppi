@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class OrderRepository {
@@ -64,8 +66,6 @@ public class OrderRepository {
         Query query = entityManager.createQuery("select o from Orders o where o.id = :id");
         query.setParameter("id" , orderId);
         return (Orders) query.getSingleResult();
-
-
     }
 
     @Transactional

@@ -43,7 +43,7 @@ public class UserRepository {
         return users.getId();
     }
 
-    public User findById(Long userId) {
+    public User findByUserId(Long userId) {
         TypedQuery query = entityManager.createQuery("select u from User u where u.id = :id" , User.class);
         query.setParameter("id" , userId);
         User users = (User) query.getSingleResult();

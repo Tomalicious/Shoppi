@@ -18,8 +18,6 @@ import javax.persistence.*;
 public class BookNonFiction extends Book {
     @Enumerated(EnumType.STRING)
     private Subject subject;
-    private String description;
-
 
 
 }

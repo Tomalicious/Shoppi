@@ -42,8 +42,7 @@ public class DetailsController {
         }
     }
 
-
-    @GetMapping(value = "detailedArticleClient/{id}/{type}/{userId}")
+    @GetMapping(value = "/detailedArticleClient/{id}/{type}/{userId}")
     public String showDetailsPageClient(Model model, @PathVariable("id") Long id , @PathVariable("type") String type, @PathVariable("userId") Long userId) {
         model.addAttribute("lp", detailService.findById(id , type));
         if (detailService.findById(id , type).getClass() == BookFiction.class || detailService.findById(id , type).getClass() == BookNonFiction.class) {

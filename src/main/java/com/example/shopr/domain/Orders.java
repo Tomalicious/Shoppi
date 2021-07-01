@@ -23,21 +23,25 @@ public class Orders {
     private Long id;
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany()
     private List<BookFiction > bookFictionList;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany()
     private List<BookNonFiction> bookNonList;
 
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany()
     private List<Lp> lpList;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @ManyToMany()
     private List<Game> gamesList;
 
     private ZonedDateTime orderDate;
 
     private Boolean isPayed;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User users;
 
 }

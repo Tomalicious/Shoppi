@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name ="user")
+@Table(name ="users")
 public class User {
 
     @Id
@@ -38,7 +40,10 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Authorization authorization;
 
-    @OneToMany(orphanRemoval=true ,fetch = FetchType.EAGER)
+    @OneToMany(orphanRemoval=true ,fetch = FetchType.EAGER , cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id")
+    @Fetch(FetchMode.SELECT)
     private List<Orders> orderList;
+
 
 }

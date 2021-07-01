@@ -20,5 +20,6 @@ import javax.persistence.*;
 public class BookFiction extends Book{
     @Enumerated(EnumType.STRING)
     private BookGenre bookGenre;
+    @Column(length = 255)
     private String description;
 }

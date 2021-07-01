@@ -40,7 +40,15 @@
     <div class="col-md-4 offset-md-2">
         <h2 style="color: #710c0f;">Total price is <h2 th:text="${totalOrder}"></h2></h2>
         <a th:href="@{/payed/{orderId}/{userId}(orderId = ${orders.getId()}, userId=${userId})}"
-           id="addAnother" class="form-control btn btn-primary active" style="background-color: #710c0f;">Checkout</a>
+           id="" class="form-control btn btn-primary active" style="background-color: #710c0f;">Checkout</a>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 15px">
+    <div class="col-md-4 offset-md-2">
+        <h2 style="color: #710c0f;">Cancel <order></order></h2>
+        <a th:href="@{/allArticlesClients/{orderId}/{userId}(orderId = ${orders.getId()}, userId=${userId})}"
+           id="cancelOrder" class="form-control btn btn-primary active" style="background-color: #710c0f;">Cancel Order</a>
     </div>
 </div>
 

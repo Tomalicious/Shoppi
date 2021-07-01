@@ -6,9 +6,7 @@ import com.example.shopr.domain.User;
 import com.example.shopr.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
-import javax.swing.*;
 import java.util.List;
 
 @Service
@@ -34,7 +32,7 @@ public class UserService {
     }
 
     public User findById(Long userId) {
-        return userRepository.findById(userId);
+        return userRepository.findByUserId(userId);
     }
 
     public void updateUser(User thisUser) {

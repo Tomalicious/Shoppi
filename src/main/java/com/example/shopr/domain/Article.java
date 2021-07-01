@@ -22,11 +22,12 @@ public abstract class Article {
 
     @Column(insertable = false, updatable = false , nullable = false)
     private String type;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String title;
     @Column(nullable = false)
     private Double price;
     private String publisher;
+    @Column(length = 100)
     private String supplierId;
     private Integer stock;
     private Integer orderQuantity;

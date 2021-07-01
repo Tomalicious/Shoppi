@@ -6,6 +6,9 @@ import com.example.shopr.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class OrderService {
     
@@ -51,5 +54,16 @@ public class OrderService {
 
     public void removeById(Long orderId) {
         orderRepository.removeById(orderId);
+    }
+    public Integer getAllByOrder(Long orderId, Long id, String type) {
+        Orders order = orderRepository.getOrder(orderId);
+        List<Article> articleList = new ArrayList<>();
+        articleList.addAll(order.getBookFictionList());
+        articleList.addAll(order.getBookNonList());
+        articleList.addAll(order.getLpList());
+        articleList.addAll(order.getGamesList());
+
+        return articleList.stream().filter(article -> article.getId() == id && article.getType().equals(type)).findFirst().get().getOrderQuantity();
+
     }
 }
