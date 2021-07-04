@@ -1,9 +1,7 @@
 package com.example.shopr.controllers;
 import com.example.shopr.domain.*;
-import com.example.shopr.services.ArticleService;
-import com.example.shopr.services.DetailService;
-import com.example.shopr.services.OrderService;
-import com.example.shopr.services.UserService;
+import com.example.shopr.services.*;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class BasketController {
+public class BasketController{
 
     @Autowired
     private UserService userService;
@@ -29,6 +27,9 @@ public class BasketController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private SupplierService supplierService;
 
     @GetMapping(value = "/shopArticle/{id}/{type}/{userId}")
     public String showBasketAmount(Model model, @PathVariable("id") Long id, @PathVariable("type") String type, @PathVariable("userId") Long userId) {
@@ -46,17 +47,6 @@ public class BasketController {
     @GetMapping(value = "/shopArticleAnother/{id}/{type}/{orderId}/{userId}")
     public String showBasketAnother(Model model, @PathVariable("id") Long id, @PathVariable("type") String type, @PathVariable("orderId") Long orderId, @PathVariable("userId") Long userId) {
 
-        orderService.getAllByOrder(orderId , id , type);
-        //Integer quantity = 0;
-        //
-        //        if(orderService.getQuantityOfOrdered(orderId) != null){
-        //            quantity = orderService.getQuantityOfOrdered(orderId);
-        //        }else {
-        //            quantity = 1;
-        //        }
-
-
-
         model.addAttribute("article", detailService.findById(id, type));
         model.addAttribute("newQuantity", new Quantity());
         List<Quantity> quantityList = new ArrayList<>();
@@ -70,13 +60,25 @@ public class BasketController {
     }
 
     @PostMapping(value = "/addingAnotherOrProceed/{id}/{type}/{userId}")
-    public String showProceedOrAdd(Model model, @PathVariable("id") Long id, @PathVariable("type") String type, @PathVariable("userId") Long userId, @ModelAttribute Quantity quantity) {
+    public String showProceedOrAdd(Model model, @PathVariable("id") Long id, @PathVariable("type") String type, @PathVariable("userId") Long userId, @ModelAttribute Quantity quantity)  {
         Orders orders = new Orders();
         orders.setOrderDate(ZonedDateTime.now());
         orders.setIsPayed(false);
-        orderService.newOrder(orders);
+        try {
+            orderService.newOrder(orders);
+        } catch (ExceededStockAmountException e) {
+            orderService.remove(orders);
+            e.printStackTrace();
+            return "error3";
+        }
 
-        return this.showProceedOrAddAnother(model, id, type, orders.getId(), userId, quantity);
+        try {
+            return this.showProceedOrAddAnother(model, id, type, orders.getId(), userId, quantity);
+        } catch (Exception e) {
+            orderService.remove(orders);
+            e.printStackTrace();
+            return "error3";
+        }
     }
 
     @PostMapping(value = "/addingAnotherOrProceedAnother/{id}/{type}/{orderId}/{userId}")
@@ -85,39 +87,87 @@ public class BasketController {
         List<BookFiction> bookList = new ArrayList<>();
         List<Game> gamesList = new ArrayList<>();
         List<Lp> lpList = new ArrayList<>();
-        Orders orders = orderService.getOrder(orderId);
-        if (detailService.findById(id, type).getClass() == BookFiction.class) {
-            BookFiction book = (BookFiction) detailService.findById(id, type);
-            book.setOrderQuantity(quantity.getQuantity());
-            bookList.add(book);
-            orders.setBookFictionList(bookList);
-        } else if (detailService.findById(id, type).getClass() == BookNonFiction.class) {
-            BookNonFiction book = (BookNonFiction) detailService.findById(id, type);
-            book.setOrderQuantity(quantity.getQuantity());
-            bookListNon.add(book);
-            orders.setBookNonList(bookListNon);
-        } else if (detailService.findById(id, type).getClass() == Game.class) {
-            Game game = (Game) detailService.findById(id, type);
-            game.setOrderQuantity(quantity.getQuantity());
-            gamesList.add(game);
-            orders.setGamesList(gamesList);
+        if (orderService.getOrder(orderId).getIsPayed() == false) {
+            Orders orders = orderService.getOrder(orderId);
+            if (detailService.findById(id, type).getClass() == BookFiction.class) {
+                BookFiction book = (BookFiction) detailService.findById(id, type);
+                book.setOrderQuantity(quantity);
+                bookList.add(book);
+                orders.setBookFictionList(bookList);
+            } else if (detailService.findById(id, type).getClass() == BookNonFiction.class) {
+                BookNonFiction book = (BookNonFiction) detailService.findById(id, type);
+                book.setOrderQuantity(quantity);
+                bookListNon.add(book);
+                orders.setBookNonList(bookListNon);
+            } else if (detailService.findById(id, type).getClass() == Game.class) {
+                Game game = (Game) detailService.findById(id, type);
+                game.setOrderQuantity(quantity);
+                gamesList.add(game);
+                orders.setGamesList(gamesList);
+            } else {
+                Lp lp = (Lp) detailService.findById(id, type);
+                lp.setOrderQuantity(quantity);
+                lpList.add(lp);
+                orders.setLpList(lpList);
+            }
+            User thisUser = userService.findById(userId);
+            List<Orders> orderList = thisUser.getOrderList();
+            if (orderList.isEmpty()) {
+                orderList.add(orders);
+            }
+            thisUser.setOrderList(orderList);
+            userService.updateUser(thisUser);
+            try {
+                orderService.updateOrder(orders);
+            } catch (ExceededStockAmountException e) {
+                orderService.remove(orders);
+                e.printStackTrace();
+                return "error3";
+            }
+            model.addAttribute("orders", orders.getId());
+            model.addAttribute("userId", userId);
+            return "addAnotherOrNot";
         } else {
-            Lp lp = (Lp) detailService.findById(id, type);
-            lp.setOrderQuantity(quantity.getQuantity());
-            lpList.add(lp);
-            orders.setLpList(lpList);
+            Orders orders = new Orders();
+            if (detailService.findById(id, type).getClass() == BookFiction.class) {
+                BookFiction book = (BookFiction) detailService.findById(id, type);
+                book.setOrderQuantity(quantity);
+                bookList.add(book);
+                orders.setBookFictionList(bookList);
+            } else if (detailService.findById(id, type).getClass() == BookNonFiction.class) {
+                BookNonFiction book = (BookNonFiction) detailService.findById(id, type);
+                book.setOrderQuantity(quantity);
+                bookListNon.add(book);
+                orders.setBookNonList(bookListNon);
+            } else if (detailService.findById(id, type).getClass() == Game.class) {
+                Game game = (Game) detailService.findById(id, type);
+                game.setOrderQuantity(quantity);
+                gamesList.add(game);
+                orders.setGamesList(gamesList);
+            } else {
+                Lp lp = (Lp) detailService.findById(id, type);
+                lp.setOrderQuantity(quantity);
+                lpList.add(lp);
+                orders.setLpList(lpList);
+            }
+            User thisUser = userService.findById(userId);
+            List<Orders> orderList = thisUser.getOrderList();
+            if (orderList.isEmpty()) {
+                orderList.add(orders);
+            }
+            thisUser.setOrderList(orderList);
+            userService.updateUser(thisUser);
+            try {
+                orderService.updateOrder(orders);
+            } catch (ExceededStockAmountException e) {
+                orderService.remove(orders);
+                e.printStackTrace();
+                return "error3";
+            }
+            model.addAttribute("orders", orders.getId());
+            model.addAttribute("userId", userId);
+            return "addAnotherOrNot";
         }
-        User thisUser = userService.findById(userId);
-        List<Orders> orderList = thisUser.getOrderList();
-        if (orderList.isEmpty()) {
-            orderList.add(orders);
-        }
-        thisUser.setOrderList(orderList);
-        userService.updateUser(thisUser);
-        orderService.updateOrder(orders);
-        model.addAttribute("orders", orders.getId());
-        model.addAttribute("userId", userId);
-        return "addAnotherOrNot";
     }
 
 
@@ -175,16 +225,51 @@ public class BasketController {
     @PostMapping(value = "/paymentPage/{orderId}/{userId}")
     public String showPaymentPage(@PathVariable("orderId") Long orderId, @PathVariable("userId") Long userId, Model model) {
         List<Double> totalPricePerArticle = new ArrayList<>();
-        List<Article> articles = new ArrayList<>();
         Orders order = orderService.getOrder(orderId);
-        articles.addAll(order.getBookFictionList());
-        articles.addAll(order.getBookNonList());
-        articles.addAll(order.getLpList());
-        articles.addAll(order.getGamesList());
+        List<Article> articles = articleService.articleListConverter(order);
+
+        List<BookFiction> bookListFiction = new ArrayList<>();
+        List<BookNonFiction> bookListNonFiction = new ArrayList<>();
+        List<Game> gamesList = new ArrayList<>();
+        List<Lp> lpList = new ArrayList<>();
+        bookListFiction.addAll(order.getBookFictionList());
+        bookListNonFiction.addAll(order.getBookNonList());
+        gamesList.addAll(order.getGamesList());
+        lpList.addAll(order.getLpList());
+
+        Double totalPerTypeBookFiction = 0D;
+        Integer totalAmountBookFiction = 0;
+        for (BookFiction b : bookListFiction) {
+            totalPerTypeBookFiction += b.getPrice() * b.getOrderQuantity().getQuantity();
+            totalPricePerArticle.add(totalPerTypeBookFiction);
+            totalAmountBookFiction += b.getOrderQuantity().getQuantity();
+        }
+        Double totalPerTypeBookNonFiction = 0D;
+        Integer totalAmountBookNonFiction = 0;
+        for (BookNonFiction b : bookListNonFiction) {
+            totalPerTypeBookNonFiction += b.getPrice() * b.getOrderQuantity().getQuantity();
+            totalPricePerArticle.add(totalPerTypeBookNonFiction);
+            totalAmountBookNonFiction += b.getOrderQuantity().getQuantity();
+        }
+
+        Double totalPerTypeGame = 0D;
+        Integer totalAmountGames = 0;
+        for (Game g : gamesList) {
+            totalPerTypeGame += g.getPrice() * g.getOrderQuantity().getQuantity();
+            totalPricePerArticle.add(totalPerTypeGame);
+            totalAmountGames += g.getOrderQuantity().getQuantity();
+        }
+        Double totalPerTypeLp = 0D;
+        Integer totalAmountLp = 0;
+        for (Lp l : lpList) {
+            totalPerTypeLp += l.getPrice() * l.getOrderQuantity().getQuantity();
+            totalPricePerArticle.add(totalPerTypeLp);
+            totalAmountLp += l.getOrderQuantity().getQuantity();
+        }
 
         Double totalPrice;
         for (Article a : articles) {
-            totalPrice = a.getPrice() * a.getOrderQuantity();
+            totalPrice = a.getPrice() * a.getOrderQuantity().getQuantity();
             totalPricePerArticle.add(totalPrice);
         }
         Double totalPriceOrder = 0D;
@@ -192,6 +277,18 @@ public class BasketController {
             totalPriceOrder += d;
         }
 
+        model.addAttribute("gamesType" , "GAME");
+        model.addAttribute("totalAmountGames" , totalAmountGames);
+        model.addAttribute("totalPerTypeGames", totalPerTypeGame);
+        model.addAttribute("lpType" , "LP");
+        model.addAttribute("totalAmountLp" , totalAmountLp);
+        model.addAttribute("totalPerTypeLp", totalPerTypeLp);
+        model.addAttribute("bookFictionType" , "FICTION");
+        model.addAttribute("totalAmountFiction" , totalAmountBookFiction);
+        model.addAttribute("totalPerTypeFiction", totalPerTypeBookFiction);
+        model.addAttribute("bookNonFictionType" , "NON FICTION");
+        model.addAttribute("totalAmountBookNon" , totalAmountBookNonFiction);
+        model.addAttribute("totalPerTypeBookNon", totalPerTypeBookNonFiction);
         model.addAttribute("allArticles", articles);
         model.addAttribute("totalPrices", totalPricePerArticle);
         model.addAttribute("totalOrder", totalPriceOrder);
@@ -207,9 +304,15 @@ public class BasketController {
         orders.setIsPayed(true);
         orders.setOrderDate(ZonedDateTime.now());
         orders.setUsers(userService.findById(userId));
-        orderService.updateOrder(orders);
-        User user = userService.findById(userId);
-
+        orderService.alterStock(orders);
+        try {
+            orderService.updateOrder(orders);
+        } catch (ExceededStockAmountException e) {
+            orderService.remove(orders);
+            e.printStackTrace();
+            return "error3";
+        }
+        supplierService.notifySuppliers(orders);
         return "forward:/chosenUser2/" + userId;
     }
 

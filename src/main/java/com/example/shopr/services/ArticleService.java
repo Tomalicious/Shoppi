@@ -6,6 +6,7 @@ import com.example.shopr.repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,7 +31,12 @@ public class ArticleService {
         articleRepository.addLp(newLp);
     }
 
-    public List<Article> findByParams(DetailParams detailSearch) {
-        return null;
+    public List<Article> articleListConverter(Orders order) {
+        List<Article> articles = new ArrayList<>();
+        articles.addAll(order.getBookFictionList());
+        articles.addAll(order.getBookNonList());
+        articles.addAll(order.getLpList());
+        articles.addAll(order.getGamesList());
+        return articles;
     }
 }

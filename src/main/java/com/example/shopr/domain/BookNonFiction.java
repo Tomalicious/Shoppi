@@ -1,6 +1,7 @@
 package com.example.shopr.domain;
 
 
+import com.example.shopr.domainenums.Subject;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

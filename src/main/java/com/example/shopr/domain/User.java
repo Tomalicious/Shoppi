@@ -1,6 +1,7 @@
 package com.example.shopr.domain;
 
 
+import com.example.shopr.domainenums.Authorization;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -44,6 +45,9 @@ public class User {
     @JoinColumn(referencedColumnName = "id")
     @Fetch(FetchMode.SELECT)
     private List<Orders> orderList;
+
+    @ManyToMany
+    List<Assessment> assessments;
 
 
 }

@@ -2,6 +2,7 @@ package com.example.shopr.services;
 
 
 import com.example.shopr.domain.*;
+import com.example.shopr.repositories.ArticleRepository;
 import com.example.shopr.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,32 +16,19 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public void addOrder(Orders orders) {
-        orderRepository.addOrder(orders);
-    }
+    @Autowired
+    private ArticleService articleService;
 
-    public void remove(Orders orders) {
+    @Autowired
+    private ArticleRepository articleRepository;
+
+
+    public void remove(Orders orders){
         orderRepository.remove(orders);
     }
 
-    public void addBookNonFictionToOrder(BookNonFiction bookNonFiction, Long id) {
-        orderRepository.addBookNonToOrder(bookNonFiction, id);
-    }
 
-    public void addBookFictionToOrder(BookFiction bookFiction, Long id) {
-        orderRepository.addBookFictionToOrder(bookFiction, id);
-    }
-
-    public void addGameToOrder(Game game, Long id) {
-        orderRepository.addGameToOrder(game , id);
-
-    }
-
-    public void addLpListToOrder(Lp lp, Long id) {
-        orderRepository.addLpListToOrder(lp, id);
-    }
-
-    public void newOrder(Orders orders) {
+    public void newOrder(Orders orders) throws ExceededStockAmountException {
         orderRepository.newOrder(orders);
     }
 
@@ -48,13 +36,10 @@ public class OrderService {
         return orderRepository.getOrder(orderId);
     }
 
-    public void updateOrder(Orders orders) {
+    public void updateOrder(Orders orders) throws ExceededStockAmountException {
         orderRepository.updateOrder(orders);
     }
 
-    public void removeById(Long orderId) {
-        orderRepository.removeById(orderId);
-    }
     public Integer getAllByOrder(Long orderId, Long id, String type) {
         Orders order = orderRepository.getOrder(orderId);
         List<Article> articleList = new ArrayList<>();
@@ -63,7 +48,16 @@ public class OrderService {
         articleList.addAll(order.getLpList());
         articleList.addAll(order.getGamesList());
 
-        return articleList.stream().filter(article -> article.getId() == id && article.getType().equals(type)).findFirst().get().getOrderQuantity();
+        return articleList.stream().filter(article -> article.getId() == id && article.getType().equals(type)).findFirst().get().getOrderQuantity().getQuantity();
+
+    }
+
+    public void alterStock(Orders orders) {
+        List<Article> articles = articleService.articleListConverter(orders);
+        for(Article a : articles){
+           Article art = articleRepository.findAll().stream().filter(article -> (article.getId() == a.getId() && article.getType().equals(a.getType()))).findFirst().get();
+           art.setStock(art.getStock() - a.getOrderQuantity().getQuantity());
+        }
 
     }
 }

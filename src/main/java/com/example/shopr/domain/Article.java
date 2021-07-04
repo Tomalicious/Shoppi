@@ -30,7 +30,9 @@ public abstract class Article {
     @Column(length = 100)
     private String supplierId;
     private Integer stock;
-    private Integer orderQuantity;
     private Long order_id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName = "id")
+    private Quantity orderQuantity;
 }

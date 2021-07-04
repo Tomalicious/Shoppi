@@ -1,7 +1,7 @@
 package com.example.shopr.services;
 
 
-import com.example.shopr.domain.Authorization;
+import com.example.shopr.domainenums.Authorization;
 import com.example.shopr.domain.User;
 import com.example.shopr.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -16,10 +16,6 @@ public class ArticleRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
-    public void save(Article article){
-        entityManager.persist(article);
-    }
 //
 //    public Article findById(Long id , Article type){
 //        TypedQuery query = entityManager.createQuery(" ");

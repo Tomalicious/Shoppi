@@ -2,6 +2,10 @@ package com.example.shopr.controllers;
 
 
 import com.example.shopr.domain.*;
+import com.example.shopr.domainenums.BookGenre;
+import com.example.shopr.domainenums.GameGenre;
+import com.example.shopr.domainenums.LpGenre;
+import com.example.shopr.domainenums.Subject;
 import com.example.shopr.services.ArticleService;
 import com.example.shopr.services.DetailService;
 import com.example.shopr.services.EditService;

@@ -23,24 +23,28 @@ public class Orders {
     private Long id;
 
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_fiction_list_id")
     private List<BookFiction > bookFictionList;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_non_list_id")
     private List<BookNonFiction> bookNonList;
 
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "games_list_id")
     private List<Lp> lpList;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lp_list_id")
     private List<Game> gamesList;
 
     private ZonedDateTime orderDate;
 
-    private Boolean isPayed;
+    private Boolean isPayed = false;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User users;
 

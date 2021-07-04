@@ -18,7 +18,7 @@ public class EditRepository {
     private EntityManager entityManager;
 
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void updateBook(BookFiction bookFiction) {
         entityManager.merge(bookFiction);
     }

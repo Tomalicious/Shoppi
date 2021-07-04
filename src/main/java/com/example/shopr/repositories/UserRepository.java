@@ -1,13 +1,12 @@
 package com.example.shopr.repositories;
 
 
-import com.example.shopr.domain.Authorization;
+import com.example.shopr.domainenums.Authorization;
 import com.example.shopr.domain.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -50,7 +49,7 @@ public class UserRepository {
         return users;
     }
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void updateUser(User thisUser) {
         entityManager.merge(thisUser);
     }
