@@ -28,7 +28,7 @@
                 <th th:text="${article.getTitle()}"></th>
                 <td th:text="${article.getPublisher()}"></td>
                 <td th:text="${article.getPrice()}"></td>
-                <td th:text="${article.getOrderQuantity()}"></td>
+                <td th:text="${article.getOrderQuantity().getQuantity()}"></td>
                 <td th:text="${totalPrices.get(allArticles.indexOf(article))}"></td>
             </tr>
             </tbody>
@@ -36,21 +36,70 @@
     </div>
 </div>
 
-<div class="row" style="margin-top: 15px">
-    <div class="col-md-4 offset-md-2">
-        <h2 style="color: #710c0f;">Total price is <h2 th:text="${totalOrder}"></h2></h2>
-        <a th:href="@{/payed/{orderId}/{userId}(orderId = ${orders.getId()}, userId=${userId})}"
-           id="" class="form-control btn btn-primary active" style="background-color: #710c0f;">Checkout</a>
+<div class="row" style="color: black; text-decoration: solid; font-size: larger">
+    <div class="classcontainer col-md-8 offset-2 " style="margin-top: 80px">
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th data-field="id" style="text-align:center">Type</th>
+                <th data-field="id" style="text-align:center">Amount</th>
+                <th data-field="id" style="text-align:center">Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th th:text="${gamesType}"></th>
+                <th th:text="${totalAmountGames}"></th>
+                <td th:text="${totalPerTypeGames}"></td>
+            </tr>
+            <tr>
+                <th th:text="${lpType}"></th>
+                <th th:text="${totalAmountLp}"></th>
+                <td th:text="${totalPerTypeLp}"></td>
+            </tr>
+            <th th:text="${bookFictionType}"></th>
+            <th th:text="${totalAmountFiction}"></th>
+            <td th:text="${totalPerTypeFiction}"></td>
+            </tr>
+            <th th:text="${bookNonFictionType}"></th>
+            <th th:text="${totalAmountBookNon}"></th>
+            <td th:text="${totalPerTypeBookNon}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
+
 <div class="row" style="margin-top: 15px">
     <div class="col-md-4 offset-md-2">
-        <h2 style="color: #710c0f;">Cancel <order></order></h2>
-        <a th:href="@{/allArticlesClients/{orderId}/{userId}(orderId = ${orders.getId()}, userId=${userId})}"
-           id="cancelOrder" class="form-control btn btn-primary active" style="background-color: #710c0f;">Cancel Order</a>
+        <h2 style="color: #710c0f;">Total price is <h2 style="color: #710c0f;" th:text="${totalOrder}"></h2></h2>
+        <a style="color: #4d5657" th:href="@{/payed/{orderId}/{userId}(orderId = ${orders.getId()}, userId=${userId})}"
+           id="submitbnt" class="form-control btn btn-dark ">Checkout</a>
     </div>
 </div>
+
+
+<!--<div class="row" style="margin-top: 15px">-->
+<!--    <div class="col-md-4 offset-md-2 active">-->
+<!--        <a th:href="@{/allArticlesClientAddAnother/{orderId}/{userId}(orderId = ${orders}, userId=${userId})}" id="addAnother" class="form-control btn btn-dark "style="color: #212529" >Add another item</a>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="row" style="margin-top: 15px">
+    <div class="col-md-4 offset-md-2">
+        <h2 style="color: #710c0f;">Cancel
+            <order></order>
+        </h2>
+        <a  style="color: #4d5657"  th:href="@{/allArticlesClients/{orderId}/{userId}(orderId = ${orders.getId()}, userId=${userId})}"
+           id="cancelOrder" class="form-control btn btn-dark">Cancel
+            Order</a>
+    </div>
+</div>
+
+
+
+<div style="margin-top: 100px" th:insert="fragments/head :: footer"></div>
 
 
 </body>

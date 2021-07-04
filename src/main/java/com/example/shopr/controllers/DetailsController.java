@@ -78,7 +78,4 @@ public class DetailsController {
         detailService.removeArticleById(id , type);
         return "redirect:/";
     }
-
-
-
 }

@@ -18,6 +18,7 @@ public abstract class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     @Column(insertable = false, updatable = false , nullable = false)
@@ -30,7 +31,8 @@ public abstract class Article {
     @Column(length = 100)
     private String supplierId;
     private Integer stock;
-    private Integer orderQuantity;
     private Long order_id;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Quantity orderQuantity;
 }

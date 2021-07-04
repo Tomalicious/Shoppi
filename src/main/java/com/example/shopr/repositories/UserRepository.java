@@ -1,13 +1,12 @@
 package com.example.shopr.repositories;
 
 
-import com.example.shopr.domain.Authorization;
+import com.example.shopr.domainenums.Authorization;
 import com.example.shopr.domain.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -46,11 +45,11 @@ public class UserRepository {
     public User findByUserId(Long userId) {
         TypedQuery query = entityManager.createQuery("select u from User u where u.id = :id" , User.class);
         query.setParameter("id" , userId);
-        User users = (User) query.getSingleResult();
-        return users;
+        User user  =  (User) query.getSingleResult();
+        return user;
     }
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void updateUser(User thisUser) {
         entityManager.merge(thisUser);
     }

@@ -7,7 +7,7 @@
 <div th:insert="fragments/head :: navbarClient"></div>
 
 
-<h1 style="color: #000000;">Details of :<h1 style="color: #000000" th:text="${game.getTitle()}"></h1></h1>
+<h1 style="color: #710c0f;">Details of :<h1 style="color: #000000" th:text="${game.getTitle()}"></h1></h1>
 
 <div class="row">
     <div class="classcontainer col-md-8 offset-2 " style="margin-top: 15px">
@@ -35,15 +35,17 @@
                 <td th:text="${game.getMinimumAge()}"></td>
                 <td th:text="${game.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}/{userId}(id=${game.getId()},type=${game.getType()} , orderId = ${orders}, userId=${userId})}"><span class="material-icons-outlined">
-add_shopping_cart
-</span></a>
+                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}/{userId}(id=${game.getId()},type=${game.getType()} , orderId = ${orders}, userId=${userId})}"><i class="material-icons">shopping_basket</i></a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+
+<div style="margin-top: 100px" th:insert="fragments/head :: footer"></div>
+
 
 </body>
 </html>

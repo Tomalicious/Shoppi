@@ -1,6 +1,7 @@
 package com.example.shopr.domain;
 
 
+import com.example.shopr.domainenums.GameGenre;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

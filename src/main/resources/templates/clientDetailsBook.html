@@ -37,7 +37,7 @@
                 <td th:text="${subject}"></td>
                 <td th:text="${book.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticle/{id}/{type}/{userId}(id=${book.getId()},type=${book.getType()}, userId = ${userId})}"><span class="material-icons-outlined">add_shopping_cart</span></a>
+                    <a th:href="@{/shopArticle/{id}/{type}/{userId}(id=${book.getId()},type=${book.getType()}, userId = ${userId})}"><i class="material-icons">shopping_basket</i></a>
                 </td>
 
 
@@ -46,6 +46,10 @@
         </table>
     </div>
 </div>
+
+
+
+<div style="margin-top: 100px" th:insert="fragments/head :: footer"></div>
 
 </body>
 </html>

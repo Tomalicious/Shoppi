@@ -14,7 +14,7 @@ public class ContactRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void saveContact(User registerNewUser) {
         entityManager.persist(registerNewUser);
     }

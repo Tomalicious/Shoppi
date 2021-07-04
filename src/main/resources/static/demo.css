@@ -16,13 +16,13 @@
 
 /* Add a color to the active/current link */
 .pill-nav a.active {
-    background-color: #710c0f;
+    background-color: #000000;
     color: white;
 }
 body {
-    background-image: url(https://media.blogto.com/articles/2017419-recordstoreday1.jpg?cmd=resize_then_crop&quality=70&w=2048&height=1365);
+    background-image: url(https://i1.wp.com/fremontartscouncil.org/wp-content/uploads/2014/04/Grey-background-for-site11.jpg?ssl=1);
     background-size: cover;
-    color: #710c0f;
+    color:#212529;
 }
 h1 {
     color: white;
@@ -34,7 +34,6 @@ h1 {
     padding-top: 80px;
     left: 200px;
     font-family: "Gill Sans MT";
-    letter-spacing: 0.2em;
 
 }
 .contactcontainer{
@@ -46,21 +45,21 @@ h1 {
     text-decoration: none;
 }
 #submitbnt a{
-    color: white;
+    color: #ffffff;
     text-decoration: none;
 }
 
 #submitbnt a:hover{
-    color: white;
+    color: #710c0f;
     text-decoration: none;
 
 }
 #submitbnt a:active{
-    color: white;
+    color: #ffffff;
     text-decoration: none;
 }
 #submitbnt a:visited{
-    color: white;
+    color: #ffffff;
     text-decoration: none;
 }
 .text{
@@ -86,12 +85,12 @@ text-align:center ;
 
 
 a:link {
-    color: #710c0f;
+    color: #ffffff;
     text-decoration: none;
 }
 
 a:visited {
-    color:#710c0f;
+    color: #ffffff;
 }
 
 /* mouse over link */
@@ -102,7 +101,7 @@ a:hover {
 
 /* selected link */
 a:active {
-    color: #710c0f;
+    color: #ffffff;
 
 }
 
@@ -188,5 +187,10 @@ span {
 
     .responsive td:before {
         content: attr(data-table-header) !important;
+    }
+
+    button{
+        background-color:#212529 ;
+        color: #dddddd;
     }
 }

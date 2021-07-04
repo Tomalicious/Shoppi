@@ -15,47 +15,14 @@ public class OrderRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
-    public void addOrder(Orders newOrders) {
-        entityManager.persist(newOrders);
-    }
-
-    public org.hibernate.criterion.Order findById(Long id) {
-        TypedQuery query = entityManager.createQuery("select o from Orders o where o.id = :id", Orders.class);
-        query.setParameter("id", id);
-        return (org.hibernate.criterion.Order) query.getSingleResult();
-
-    }
-
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void remove(Orders orders) {
+
         entityManager.remove(orders);
     }
 
-    @Transactional
-    public void addBookNonToOrder(BookNonFiction book, Long id) {
-        entityManager.merge(book);
-    }
 
-
-    @Transactional
-    public void addBookFictionToOrder(BookFiction bookFiction, Long id) {
-        entityManager.merge(bookFiction);
-    }
-
-    @Transactional
-    public void addLpListToOrder(Lp lpList, Long id) {
-        entityManager.merge(lpList);
-    }
-
-
-    @Transactional
-    public void addGameToOrder(Game game, Long id) {
-        entityManager.merge(game);
-    }
-
-
-    @Transactional
+    @Transactional(rollbackOn = Exception.class)
     public void newOrder(Orders orders) {
         entityManager.persist(orders);
 
@@ -63,20 +30,28 @@ public class OrderRepository {
 
 
     public Orders getOrder(Long orderId) {
-        Query query = entityManager.createQuery("select o from Orders o where o.id = :id");
+        Query query = entityManager.createQuery("select o from Orders o where o.id = :id" , Orders.class);
         query.setParameter("id" , orderId);
         return (Orders) query.getSingleResult();
     }
 
-    @Transactional
-    public void updateOrder(Orders orders) {
+    @Transactional(rollbackOn = ExceededStockAmountException.class)
+    public void updateOrder(Orders orders) throws ExceededStockAmountException {
+        List<Article> articleList = new ArrayList<>();
+        if(orders.getLpList() != null){
+        articleList.addAll(orders.getLpList());
+        }else if(orders.getGamesList() != null) {
+            articleList.addAll(orders.getGamesList());
+        }else if(orders.getBookNonList() != null) {
+            articleList.addAll(orders.getBookNonList());
+        }else if(orders.getBookFictionList() != null){
+            articleList.addAll(orders.getBookFictionList());
+        }
+        for(Article a : articleList){
+            if (a.getOrderQuantity().getQuantity() > a.getStock()){
+                throw new ExceededStockAmountException("Order quantity should not exceed stock amount");
+            }
+        }
         entityManager.merge(orders);
-    }
-
-    @Transactional
-    public void removeById(Long orderId) {
-        Query query = entityManager.createQuery("delete from Orders o where o.id = :id");
-        query.setParameter("id" , orderId);
-        query.executeUpdate();
     }
 }

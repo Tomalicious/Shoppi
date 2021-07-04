@@ -7,12 +7,13 @@
 <div th:insert="fragments/head :: navbarInlogScreen"></div>
 
 
-<h1 style="color: #710c0f;">Contact us</h1>
+<h2 style="margin-top: 50px" class="offset-md-2">Register</h2>
 
-<form method="post"  th:action="@{/sendEmail}" th:object="${newContact}" style="margin-top: 20px">
+<form method="post" th:action="@{/register}" th:object="${registerNewUser}"
+      style="margin-top: 20px;margin-bottom: 250px">
     <div>
         <div class="row">
-            <div class="col-md-4 form-row offset-md-2" >
+            <div class="col-md-4 form-row offset-md-2">
                 <label for="firstName" class="form-label">First Name</label>
                 <input id="firstName" class="form-control" placeholder="First name" name="firstName" required>
             </div>
@@ -35,22 +36,32 @@
                 <input type="email" id="email" class="form-control" placeholder="Email" name="email" required>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="message" class="form-label">Message</label>
-                <textarea type="text" id="message" class="form-control" placeholder="Message" name="message" required></textarea>
-            </div>
-        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-4 form-row offset-md-2">
+            <label for="user1" class="form-label">Username</label>
+            <input id="user1" class="form-control" placeholder="User" name="user" required>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 form-row offset-md-2">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" type="password" class="form-control" placeholder="Password" name="password" required>
+        </div>
     </div>
 
     <div class="row" style="margin-top: 15px">
         <div class="col-md-4 offset-md-2">
-            <button id="submitbnt" type="submit" class="form-control btn btn-dark" >Submit</button>
+            <button id="submit" type="submit" class="form-control btn btn-dark">Submit
+            </button>
         </div>
     </div>
 </form>
 
+
+
 <div style="margin-top: 100px" th:insert="fragments/head :: footer"></div>
+
 </body>
 </html>

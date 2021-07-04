@@ -1,4 +1,4 @@
-package com.example.shopr.domain;
+package com.example.shopr.domainenums;
 
 
 import lombok.Getter;

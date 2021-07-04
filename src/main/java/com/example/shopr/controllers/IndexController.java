@@ -2,6 +2,10 @@ package com.example.shopr.controllers;
 
 
 import com.example.shopr.domain.*;
+import com.example.shopr.domainenums.Authorization;
+import com.example.shopr.domainenums.BookGenre;
+import com.example.shopr.domainenums.GameGenre;
+import com.example.shopr.domainenums.LpGenre;
 import com.example.shopr.services.ArticleService;
 import com.example.shopr.services.ContactService;
 import com.example.shopr.services.DetailService;
@@ -11,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -146,16 +149,3 @@ public class IndexController {
         return "detailedSearch";
     }
 }
-
-
-
-
-//    @GetMapping(value = "addingWhichBook")
-//    public String addingWhichBookPage(Model model) {
-//        List<BookType> bookTypes = new ArrayList<>();
-//        bookTypes.add(BookType.builder().name("Fiction").number("1").build());
-//        bookTypes.add(BookType.builder().name("Non-Fiction").number("2").build());
-//        model.addAttribute("allBooks" , bookTypes);
-//        model.addAttribute("newBook" , new Type());
-//        return "addingWhichBooks";
-//    }

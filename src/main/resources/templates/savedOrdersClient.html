@@ -4,45 +4,42 @@
 </head>
 <body>
 
-<div th:insert="fragments/head :: navbar"></div>
+<div th:insert="fragments/head :: navbarClient"></div>
 
 
-<h1 style="color: #710c0f;">Welcome To Shopr</h1>
+<h1 style="color: #710c0f;">Your Saved Order(s)</h1>
 
-<h2 class="offset-md-2"> If you want a more detailed search click <a style="color: white" th:href="@{/detailedSearchOnParam}" class="btn btn-dark py-3 px-4">here</a></h2>
-
-
-    <div class="row" style="color: black; text-decoration: solid; font-size: larger">
-    <div class="classcontainer col-md-8 offset-2 " style="margin-top: 80px">
-        <table class="table responsive table-dark" id="sort" style="margin-top: 150px">
+<div class="row">
+    <div class="classcontainer col-md-8 offset-2 " style="margin-top: 15px">
+        <table class="table table-hover table-dark" style="margin-top: 150px">
 
             <thead>
             <tr>
-                <th data-field="id" style="text-align:center">Id</th>
                 <th data-field="id" style="text-align:center">Type</th>
                 <th data-field="id" style="text-align:center">Title</th>
                 <th data-field="id" style="text-align:center">Price</th>
-                <th data-field="id" style="text-align:center">Publisher</th>
-                <th data-field="id" style="text-align:center">Details</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="article : ${allArticles}">
+            <tr th:each="order : ${orderList}">
+                <th data-field="id" style="text-align:center" th:text="${order.getBookNonList()}"></th>
+                <th data-field="id" style="text-align:center" th:text="${order.getBookNonList()}"></th>
+                <th data-field="id" style="text-align:center" th:text="${order.getBookNonList()}"></th>
 
-                <th th:text="${article.getId()}"></th>
-                <th th:text="${article.getType()}"></th>
-                <td th:text="${article.getTitle()}"></td>
-                <td th:text="${article.getPrice()}"></td>
-                <td th:text="${article.getPublisher()}"></td>
+
                 <td style="text-align:center">
-                    <a th:href="@{/detailedArticle/{id}/{type}(id=${article.getId()},type=${article.getType()})}"><span class="material-icons">details</span></a>
+                    <a><i class="material-icons">shopping_basket</i></a>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+
+
 <div style="margin-top: 100px" th:insert="fragments/head :: footer"></div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>

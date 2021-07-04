@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<div th:insert="fragments/head :: navbar"></div>
+<div th:insert="fragments/head :: navbarClient"></div>
 
 
 <h1 style="color: #710c0f;">Add Or Complete?<Article></Article></h1>
@@ -14,23 +14,32 @@
 
     <div class="row" style="margin-top: 15px">
         <div class="col-md-4 offset-md-2">
-            <button id="submitbnt" type="submit" class="form-control btn btn-primary" style="background-color: #710c0f;" >Continue to payment</button>
+            <button id="submitbnt" type="submit" class="form-control btn btn-dark" >Continue to payment</button>
         </div>
     </div>
 
     <div class="row" style="margin-top: 15px">
         <div class="col-md-4 offset-md-2 active">
-            <a th:href="@{/allArticlesClientAddAnother/{orderId}/{userId}(orderId = ${orders}, userId=${userId})}" id="addAnother" class="form-control btn btn-primary active" style="background-color: #710c0f;" >Add another item</a>
+            <a th:href="@{/allArticlesClientAddAnother/{orderId}/{userId}(orderId = ${orders}, userId=${userId})}" id="addAnother" class="form-control btn btn-dark "style="color: #4d5657" >Add another item</a>
         </div>
     </div>
 
     <div class="row" style="margin-top: 15px">
         <div class="col-md-4 offset-md-2 active">
-            <a th:href="@{/allArticlesClients/{orderId}/{userId}(orderId = ${orders}, userId=${userId})}" id="cancel" class="form-control btn btn-primary active" style="background-color: #710c0f;" >Cancel Order</a>
+            <a th:href="@{/allArticlesClients/{orderId}/{userId}(orderId = ${orders}, userId=${userId})}" id="cancel" class="form-control btn btn-dark " style="color: #4d5657">Cancel Order</a>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 15px">
+        <div class="col-md-4 offset-md-2 active">
+            <a th:href="@{/saveOrder/{orderId}/{userId}(orderId = ${orders}, userId=${userId})}" id="save" class="form-control btn btn-dark " style="color: #4d5657">Save order</a>
         </div>
     </div>
 
 </form>
+
+
+<div style="margin-top: 100px" th:insert="fragments/head :: footer"></div>
 
 </body>
 </html>

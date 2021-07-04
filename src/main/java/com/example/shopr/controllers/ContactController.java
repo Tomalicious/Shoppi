@@ -27,4 +27,9 @@ public class ContactController {
         contactService.sendMail(contact);
         return "redirect:/";
     }
+
+    @GetMapping(value="/signUp")
+    public String signUpPage(){
+        return "signUpNow";
+    }
 }

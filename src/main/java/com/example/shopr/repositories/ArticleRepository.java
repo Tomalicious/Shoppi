@@ -16,16 +16,6 @@ public class ArticleRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
-    public void save(Article article){
-        entityManager.persist(article);
-    }
-//
-//    public Article findById(Long id , Article type){
-//        TypedQuery query = entityManager.createQuery(" ");
-//        return query.getSingleResult();
-//    }
-//
     public List<Article> findAll() {
         List<Article> articleList = new ArrayList<>();
         List<Game> gamesList = entityManager.createQuery("select g from Game g order by g.type , g.title , g.publisher, g.price ", Game.class).getResultList();

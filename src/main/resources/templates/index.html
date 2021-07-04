@@ -3,102 +3,156 @@
 <head th:replace="fragments/head :: head">
 </head>
 <body>
+<nav class="navbar">
+    <div class="container-fluid">
 
-<div th:insert="fragments/head :: navbarClient"></div>
+        <a style="color: black; font-size: xx-large" th:href="@{/}">Entertainee.</a>
+
+        <a style="background-color: #212529" class="btn " th:href="@{/signUp}">Sign Up</a>
 
 
-<h1 style="color: #710c0f;">Welcome To Shopr</h1>
+        <form class="form-inline" method="post" th:action="@{/chosenUser}" th:object="${newUser}">
+            <label for="user" class="m-2 ">Log in</label>
+            <input name="user" class="form-control m-2" id="user" placeholder="Enter username here" required>
 
-<h2 class="offset-md-2"> Please log in</h2>
+            <label for="inlineFormPassword" class="m-2 sr-only">Password</label>
+            <input type="password" name="password" class="form-control m-2" id="inlineFormPassword" required>
 
-
-<h2 class="offset-md-2"> Please log in </h2>
-
-<form method="post" th:action="@{/chosenUser}" th:object="${newUser}" style="margin-top: 20px">
-
-    <div class="row">
-        <div class="col-md-4 form-row offset-md-2">
-            <label for="user2" class="form-label">Username</label>
-            <input id="user2" class="form-control" placeholder="User" name="user" required>
-        </div>
+            <button style="background-color: #212529; color: white" type="submit" class="btn m-2">Submit</button>
+        </form>
     </div>
-    <div class="row">
-        <div class="col-md-4 form-row offset-md-2">
-            <label for="password2" class="form-label">Password</label>
-            <input  id="password2" type="password" class="form-control" placeholder="Password" name="password" required>
-        </div>
     </div>
 
-    <div class="row" style="margin-top: 15px">
-        <div class="col-md-4 offset-md-2">
-            <button id="submitbnt" type="submit" class="form-control btn btn-primary" style="background-color: #710c0f;" >Submit</button>
-        </div>
-    </div>
-</form>
+</nav>
+<!-- Masthead-->
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <h1 class="mb-5">We've got all the entertainment items you've ever dreamed of </h1>
 
-<h2 style="margin-top: 50px" class="offset-md-2">Register as new Client</h2>
-
-<form  method="post" th:action="@{/register}" th:object="${registerNewUser}"
-      style="margin-top: 20px;margin-bottom: 250px">
-    <div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="firstName" class="form-label">First Name</label>
-                <input id="firstName" class="form-control" placeholder="First name" name="firstName" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="lastName" class="form-label">Last Name</label>
-                <input id="lastName" class="form-control" placeholder="Last Name" name="lastName" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="age" class="form-label">Age</label>
-                <input id="age" class="form-control" placeholder="Age" name="age" required>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-control" placeholder="Email" name="email" required>
+                </div>
             </div>
         </div>
     </div>
+</header>
+<!-- Icons Grid-->
+<section class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex"></div>
+                    <h3>Games</h3>
+                    <p class="lead mb-0"></p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex"></div>
+                    <h3>CD'S</h3>
+                    <p class="lead mb-0"></p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex"></div>
+                    <h3>LP'S</h3>
+                    <p class="lead mb-0"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Image Showcases-->
 
-    <div class="row">
-        <div class="col-md-4 form-row offset-md-2">
-            <label for="user1" class="form-label">Username</label>
-            <input id="user1" class="form-control" placeholder="User" name="user" required>
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                 style="background-image: url('https://www.lifewire.com/thmb/688ROrNftqHZ2XCKgTpPsYy8W8s=/1920x1080/filters:no_upscale():max_bytes(150000):strip_icc()/offlineandroidgames-limbo-5be1638746e0fb00514a3b11.jpg'); background-size: cover"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>GAMES</h2>
+                <p class="lead mb-0">We've got the latest games , accessories and more!</p>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 form-row offset-md-2">
-            <label for="password" class="form-label">Password</label>
-            <input  id="password" class="form-control" placeholder="Password" name="password" required>
+        <div class="row g-0">
+            <div class="col-lg-6 text-white showcase-img"
+                 style="background-image: url('https://im.indiatimes.in/facebook/2019/Mar/cd_and_vinyl_sales_grew_in_2018_compared_to_streaming_and_digital_music_1551700824.jpg')"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>CD'S</h2>
+                <p class="lead mb-0">Every cd you can think of is or will be available as soon as possible!</p>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img"
+                 style="background-image: url('https://www.partyscene.nl/ckfinder/userfiles/images/vinyl_image.jpg')"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>LP'S</h2>
+                <p class="lead mb-0">From old to new , we've got em' all!
+                    Widest selection of first and secondhand Lp's available here!</p>
+            </div>
+        </div>
+        <div class="row g-0">
+            <div class="col-lg-6 text-white showcase-img"
+                 style="background-image: url('https://cdn.pixabay.com/photo/2020/04/27/17/36/books-5100847_1280.jpg')"></div>
+            <div class="col-lg-6 my-auto showcase-text">
+                <h2>BOOKS</h2>
+                <p class="lead mb-0">Only the very best selection in the world!</p>
+            </div>
         </div>
     </div>
 
-    <div class="row" style="margin-top: 15px">
-        <div class="col-md-4 offset-md-2">
-            <button id="submit" type="submit" class="form-control btn btn-primary"
-                    style="background-color: #710c0f;">Submit
-            </button>
+</section>
+<!-- Testimonials-->
+<section class="testimonials text-center bg-light">
+    <div class="container">
+        <h2 class="mb-5" style="color: #212529" >What people are saying...</h2>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..."/>
+                    <h5 style="color: #212529" >Margaret E.</h5>
+                    <p style="color: #212529"  class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-2.jpg" alt="..."/>
+                    <h5 style="color: #212529" >Fred S.</h5>
+                    <p style="color: #212529"  class="font-weight-light mb-0">"The LP's are amazing , the widest selection of products I've ever
+                        seen
+                        ."</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-3.jpg" alt="..."/>
+                    <h5 style="color: #212529" >Sarah W.</h5>
+                    <p style="color: #212529" class="font-weight-light mb-0">"Thanks so much for making these products accessible to
+                        us!"</p>
+                </div>
+            </div>
         </div>
     </div>
-</form>
+</section>
+
+
+<div style="margin-top: 100px" th:insert="fragments/head :: footer"></div>
+
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.0/moment.min.js'></script>
-<script  src="function.js"></script>
+<script src="function.js"></script>
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#sort").DataTable({
-            columnDefs : [
-                { type : 'date', targets : [3] }
+            columnDefs: [
+                {type: 'date', targets: [3]}
             ],
         });
     });
