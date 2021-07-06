@@ -217,7 +217,7 @@ public class BasketController {
             }
         }
 
-        Double totalPrice;
+        Double totalPrice = 0D;
         for (Article a : articles) {
             totalPrice = a.getPrice() * a.getOrderQuantity().getQuantity();
             totalPricePerArticle.add(totalPrice);
@@ -241,7 +241,7 @@ public class BasketController {
         model.addAttribute("totalPerTypeBookNon", totalPerTypeBookNonFiction);
         model.addAttribute("allArticles", articles);
         model.addAttribute("totalPrices", totalPricePerArticle);
-        model.addAttribute("totalOrder", totalPriceOrder);
+        model.addAttribute("totalOrder", totalPriceOrder/2);
         model.addAttribute("orders", orderService.getOrder(orderId));
         model.addAttribute("userId", userId);
         model.addAttribute("newUser", new User());
@@ -271,7 +271,7 @@ public class BasketController {
         Orders orders = orderService.getOrder(orderId);
         orders.setOrderDate(ZonedDateTime.now());
         orders.setUsers(userService.findById(userId));
-        return "redirect:/";
+        return "forward:/savedOrders/" + userId;
     }
 
     @GetMapping(value ="/savedOrders/{userId}")
@@ -281,5 +281,17 @@ public class BasketController {
         return "savedOrdersClient";
     }
 
+    @GetMapping(value ="/finishOrProceedToBuy/{orderId}/{userId}")
+    public String continueOrder(Model model , @PathVariable("orderId") Long orderId,  @PathVariable("userId") Long userId) {
+        if (orderService.getOrder(orderId).getIsPayed() == true) {
+            model.addAttribute("userId" , userId);
+            return "error4";
+        } else {
+            model.addAttribute("orderList", userService.findById(userId).getOrderList());
+            model.addAttribute("orderId", orderId);
+            model.addAttribute("userId", userId);
+            return "finishOrProceedPurchase";
+        }
+    }
 
 }

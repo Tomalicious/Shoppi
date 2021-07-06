@@ -10,45 +10,36 @@
 <h1 style="color: #710c0f;">Editing A Non Fictive Book</h1>
 
 <form method="post"  th:action="@{/editBookNon/{id}/{type}(id = ${books.getId()} , type = ${books.getType()})}" th:object="${newBook}" style="margin-top: 20px">
-    <div>
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
                 <label for="title" class="form-label">Title</label>
-                <input  id="title" class="form-control" placeholder="Title" name="title" required>
+                <input th:value="${newBook.getTitle()}"  id="title" class="form-control" placeholder="Title" name="title" required>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
                 <label for="price" class="form-label">Price</label>
-                <input id="price" class="form-control" placeholder="Price" name="price" required>
+                <input th:value="${newBook.getPrice()}"  id="price" class="form-control" placeholder="Price" name="price" required>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
                 <label for="publisher" class="form-label">Publisher</label>
-                <input id="publisher" class="form-control" placeholder="Publisher" name="publisher" required>
+                <input th:value="${newBook.getPublisher()}"  id="publisher" class="form-control" placeholder="Publisher" name="publisher" required>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
                 <label for="author" class="form-label">Author</label>
-                <input  id="author" class="form-control" placeholder="Author" name="author" required>
+                <input th:value="${newBook.getAuthor()}"  id="author" class="form-control" placeholder="Author" name="author" required>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
                 <label for="isbn" class="form-label">Isbn (format example = "978-90-1234-567-8")</label>
-                <input  id="isbn" class="form-control" placeholder="format : 978-90-1234-567" name="isbn" required>
+                <input th:value="${newBook.getIsbn()}" id="isbn" class="form-control" placeholder="format : 978-90-1234-567" name="isbn" required>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 form-row offset-md-2">
-                <label for="description" class="form-label">Description</label>
-                <input  id="description" class="form-control" placeholder="Description" name="description" required>
-            </div>
-        </div>
-
-    </div>
 
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
@@ -62,21 +53,21 @@
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
             <label for="supplierId" class="form-label">Id Of The Supplier</label>
-            <input id="supplierId" class="form-control" placeholder="Supplier Id" name="supplierId">
+            <input th:value="${newBook.getSupplierId()}" id="supplierId" class="form-control" placeholder="Supplier Id" name="supplierId">
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
             <label for="pages" class="form-label">Price</label>
-            <input id="pages" class="form-control" placeholder="Pages" name="pages" required>
+            <input th:value="${newBook.pages}" id="pages" class="form-control" placeholder="Pages" name="pages" required>
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">
             <label for="stock" class="form-label">Price</label>
-            <input id="stock" class="form-control" placeholder="Stock" name="stock" required>
+            <input th:value="${newBook.stock}" id="stock" class="form-control" placeholder="Stock" name="stock" required>
         </div>
     </div>
 

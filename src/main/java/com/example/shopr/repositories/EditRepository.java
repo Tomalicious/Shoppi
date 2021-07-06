@@ -23,14 +23,17 @@ public class EditRepository {
         entityManager.merge(bookFiction);
     }
 
+    @Transactional
     public void updateBookNon(BookNonFiction bookNonFiction) {
         entityManager.merge(bookNonFiction);
     }
 
+    @Transactional
     public void updateGame(Game game) {
         entityManager.merge(game);
     }
 
+    @Transactional
     public void updateLp(Lp lp) {
         entityManager.merge(lp);
     }

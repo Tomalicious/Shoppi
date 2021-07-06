@@ -7,7 +7,9 @@
 <div th:insert="fragments/head :: navbarInlogScreen"></div>
 
 
-<h1  style="color: #710c0f;">There was something wrong with your request <Article></Article></h1>
+<h1  style="color: #710c0f;"> This Order Has Already Been Completed </h1>
+
+<h2 class="offset-md-2"> click here to go back to the list of articles <a style="color: white" th:href="@{/allArticlesClient/{userId}(userId = ${userId})}" class="btn btn-dark py-3 px-4">here</a></h2>
 
 
 

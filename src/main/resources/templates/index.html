@@ -13,10 +13,10 @@
 
         <form class="form-inline" method="post" th:action="@{/chosenUser}" th:object="${newUser}">
             <label for="user" class="m-2 ">Log in</label>
-            <input name="user" class="form-control m-2" id="user" placeholder="Enter username here" required>
+            <input name="user" class="form-control m-2" id="user" placeholder="Enter username" required>
 
             <label for="inlineFormPassword" class="m-2 sr-only">Password</label>
-            <input type="password" name="password" class="form-control m-2" id="inlineFormPassword" required>
+            <input type="password" name="password" class="form-control m-2"  placeholder="Enter password" id="inlineFormPassword" required>
 
             <button style="background-color: #212529; color: white" type="submit" class="btn m-2">Submit</button>
         </form>

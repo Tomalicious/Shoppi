@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<div th:insert="fragments/head :: navbarClient"></div>
+<div th:insert="fragments/head :: navbarClient(${userId})"></div>
 
 
 <h1 style="color: #710c0f;">Your Saved Order(s)</h1>
@@ -13,25 +13,21 @@
     <div class="classcontainer col-md-8 offset-2 " style="margin-top: 15px">
         <table class="table table-hover table-dark" style="margin-top: 150px">
 
-            <thead>
             <tr>
-                <th data-field="id" style="text-align:center">Type</th>
-                <th data-field="id" style="text-align:center">Title</th>
-                <th data-field="id" style="text-align:center">Price</th>
+                <th data-field="id" style="text-align:center">Id<th>
+                <th data-field="id" style="text-align:center">Is it payed yet?</th>
+                <th data-field="id" style="text-align:center">Date</th>
+                <th data-field="id" style="text-align:center">Update/Finish Purchase</th>
             </tr>
-            </thead>
-            <tbody>
             <tr th:each="order : ${orderList}">
-                <th data-field="id" style="text-align:center" th:text="${order.getBookNonList()}"></th>
-                <th data-field="id" style="text-align:center" th:text="${order.getBookNonList()}"></th>
-                <th data-field="id" style="text-align:center" th:text="${order.getBookNonList()}"></th>
-
-
+                <td data-field="id" style="text-align:center" th:text="${order.getId()}"></td>
+                <td></td>
+                <td data-field="id" style="text-align:center" th:text="${order.getIsPayed()}"></td>
+                <td data-field="id" style="text-align:center" th:text="${order.getOrderDate()}"></td>
                 <td style="text-align:center">
-                    <a><i class="material-icons">shopping_basket</i></a>
+                    <a th:href="@{/finishOrProceedToBuy/{orderId}/{userId}(orderId = ${order.getId()} , userId=${userId})}"><i class="material-icons">shopping_basket</i></a>
                 </td>
             </tr>
-            </tbody>
         </table>
     </div>
 </div>

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
@@ -57,6 +58,13 @@ public class IndexController {
         }else {
             return "error2";
         }
+    }
+
+    @GetMapping(value = "/allArticlesClient/{userId}")
+    public String showAllArticles(Model model , @PathVariable("userId")Long userId) {
+        model.addAttribute("allArticles" ,articleService.getAll());
+        model.addAttribute("userId" , userId);
+        return "allArticlesClient";
     }
 
     @PostMapping(value = "/register")
