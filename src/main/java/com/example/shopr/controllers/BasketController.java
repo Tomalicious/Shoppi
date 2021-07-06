@@ -251,9 +251,12 @@ public class BasketController {
     @GetMapping(value = "/payed/{orderId}/{userId}")
     public String showPayment(@PathVariable("orderId") Long orderId, @PathVariable("userId") Long userId, Model model) {
         Orders orders = orderService.getOrder(orderId);
+        User user = userService.findById(userId);
         orders.setIsPayed(true);
         orders.setOrderDate(ZonedDateTime.now());
         orders.setUsers(userService.findById(userId));
+        user.getOrderList().add(orders);
+        userService.updateUser(user);
         orderService.alterStock(orders);
         supplierService.notifySuppliers(orders);
         return "forward:/chosenUser2/" + userId;
@@ -269,8 +272,12 @@ public class BasketController {
     @GetMapping(value ="/saveOrder/{orderId}/{userId}")
     public String saveOrderRedirect(Model model, @PathVariable("orderId") Long orderId , @PathVariable("userId") Long userId) {
         Orders orders = orderService.getOrder(orderId);
+        User user = userService.findById(userId);
         orders.setOrderDate(ZonedDateTime.now());
         orders.setUsers(userService.findById(userId));
+        user.getOrderList().add(orders);
+        userService.updateUser(user);
+        orderService.newOrder(orders);
         return "forward:/savedOrders/" + userId;
     }
 

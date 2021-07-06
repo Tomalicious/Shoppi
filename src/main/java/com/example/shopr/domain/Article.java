@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.List;
 
 @MappedSuperclass
 @DiscriminatorColumn(name= "type")
@@ -34,5 +35,6 @@ public abstract class Article {
     private Long order_id;
 
     @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "quantity_id")
     private Quantity orderQuantity;
 }

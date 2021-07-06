@@ -50,6 +50,11 @@
     <a th:href="@{/savedOrders/{userId}(userId = ${userId})}">Saved Order</a>
 </div>
 
+<div class="pill-nav" th:fragment="navbarError4(userId)">
+    <a class="active" th:href="@{/}">Log Out</a>
+    <a th:href="@{/allArticlesClient/{userId}(userId= ${userId})}">Articles List</a>
+</div>
+
 <div class="pill-nav" th:fragment="navbarInlogScreen">
     <a class="active" th:href="@{/}">Home</a>
     <a th:href="@{/contactpage}">Contact</a>
