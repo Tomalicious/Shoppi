@@ -23,20 +23,20 @@ public class Orders {
     private Long id;
 
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = {CascadeType.PERSIST , CascadeType.DETACH , CascadeType.MERGE , CascadeType.REFRESH})
     @JoinColumn(name = "book_fiction_list_id")
     private List<BookFiction > bookFictionList;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = {CascadeType.PERSIST , CascadeType.DETACH , CascadeType.MERGE , CascadeType.REFRESH})
     @JoinColumn(name = "book_non_list_id")
     private List<BookNonFiction> bookNonList;
 
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = {CascadeType.PERSIST , CascadeType.DETACH , CascadeType.MERGE , CascadeType.REFRESH})
     @JoinColumn(name = "games_list_id")
     private List<Lp> lpList;
 
-    @ManyToMany(cascade = CascadeType.REMOVE)
+    @ManyToMany(cascade = {CascadeType.PERSIST , CascadeType.DETACH , CascadeType.MERGE , CascadeType.REFRESH})
     @JoinColumn(name = "lp_list_id")
     private List<Game> gamesList;
 
