@@ -23,20 +23,20 @@ public class Orders {
     private Long id;
 
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "book_fiction_list_id")
     private List<BookFiction > bookFictionList;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "book_non_list_id")
     private List<BookNonFiction> bookNonList;
 
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "games_list_id")
     private List<Lp> lpList;
 
-    @ManyToMany()
+    @ManyToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "lp_list_id")
     private List<Game> gamesList;
 
