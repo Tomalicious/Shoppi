@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,11 +39,18 @@ public class IndexController {
 
 
     @GetMapping(value = "/")
-    public String showIndex(Model model) {
+    public String showIndex(Model model, HttpSession session) {
         model.addAttribute("users" , userService.getUsers());
         model.addAttribute("newUser" , new User());
         model.addAttribute("registerNewUser" , new User());
+        session.setAttribute("name", "value");
         return "index";
+    }
+
+    @GetMapping(value = "/employeeArticlePage")
+    public String showArticlesEmployee(Model model) {
+        model.addAttribute("allArticles" ,articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @PostMapping(value = "/chosenUser")
@@ -118,37 +126,32 @@ public class IndexController {
         }
     }
 
-    @GetMapping(value = "addingLp")
-    public String addingLpPage(Model model) {
-        return "redirect:/";
-    }
-    @GetMapping(value = "addingGame")
-    public String addingGamePage(Model model) {
-        return "redirect:/";
-    }
-
     @PostMapping(value = "/addedBook")
-    public String add(@ModelAttribute BookFiction newBook) {
+    public String add(@ModelAttribute BookFiction newBook , Model model) {
         articleService.addBook(newBook);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @PostMapping(value = "/addedNonFictiveBook")
-    public String add(@ModelAttribute BookNonFiction newBook) {
+    public String add(@ModelAttribute BookNonFiction newBook , Model model) {
         articleService.addBook(newBook);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @PostMapping(value = "/addedGame")
-    public String add(@ModelAttribute Game newGame) {
+    public String add(@ModelAttribute Game newGame , Model model) {
         articleService.addGame(newGame);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @PostMapping(value = "/addedLp")
-    public String add(@ModelAttribute Lp  newLp) {
+    public String add(@ModelAttribute Lp  newLp, Model model) {
         articleService.addLp(newLp);
-        return "redirect:/";
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
     }
 
     @GetMapping(value = "/detailedSearchOnParam")

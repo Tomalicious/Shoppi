@@ -2,6 +2,8 @@ package com.example.shopr.repositories;
 
 
 import com.example.shopr.domain.*;
+import com.example.shopr.interfaces.ArticleLookup;
+import com.example.shopr.interfaces.ArticleRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -11,11 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class ArticleRepository {
+public class ArticleRepositoryImpl implements ArticleRepository, ArticleLookup {
 
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Override
     public List<Article> findAll() {
         List<Article> articleList = new ArrayList<>();
         List<Game> gamesList = entityManager.createQuery("select g from Game g order by g.type , g.title , g.publisher, g.price ", Game.class).getResultList();
@@ -25,6 +28,31 @@ public class ArticleRepository {
         articleList.addAll(gamesList);
         articleList.addAll(lpList);
         return articleList;
+    }
+
+    @Override
+    public Article findById(Long aLong) {
+        return null;
+    }
+
+    @Override
+    public Article save(Article entity) {
+        return null;
+    }
+
+    @Override
+    public void remove(Long aLong) {
+
+    }
+
+    @Override
+    public List<Article> findByTitle(String title) {
+        return null;
+    }
+
+    @Override
+    public List<Article> findByPriceGreaterThan(Double price) {
+        return null;
     }
 
     @Transactional
@@ -45,5 +73,7 @@ public class ArticleRepository {
     public void removeArticle(Article article) {
         entityManager.remove(article);
     }
+
+
 
 }

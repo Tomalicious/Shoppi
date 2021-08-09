@@ -40,8 +40,8 @@
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
                 <label for="lpGenre" class="form-label">Lp Genre</label>
-                <select class="form-control" name="lpGenre" id="lpGenre" th:field="*{lpGenre}">
-                    <option th:each="genre :${genreList}" th:text="${genre}" th:value="${newLp.lpGenre}"></option>
+                <select class="form-control" name="lpGenre" id="lpGenre">
+                    <option th:each="genre :${genreList}" th:text="${genre}" th:value="${genre}"></option>
                 </select>
             </div>
         </div>
@@ -52,6 +52,14 @@
                 <input id="supplierId" class="form-control" placeholder="Supplier Id" name="supplierId">
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-4 form-row offset-md-2">
+                <label for="stock" class="form-label">Stock</label>
+                <input id="stock" class="form-control" placeholder="Stock" name="stock" required>
+            </div>
+        </div>
+
 
 
         <div class="row" style="margin-top: 15px">

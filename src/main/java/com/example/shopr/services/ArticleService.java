@@ -2,7 +2,7 @@ package com.example.shopr.services;
 
 
 import com.example.shopr.domain.*;
-import com.example.shopr.repositories.ArticleRepository;
+import com.example.shopr.repositories.ArticleRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,22 +13,22 @@ import java.util.List;
 public class ArticleService {
 
     @Autowired
-    private ArticleRepository articleRepository;
+    private ArticleRepositoryImpl articleRepositoryImpl;
 
     public List<Article> getAll() {
-        return articleRepository.findAll();
+        return articleRepositoryImpl.findAll();
     }
 
     public void addBook(Book newBook) {
-        articleRepository.addBook(newBook);
+        articleRepositoryImpl.addBook(newBook);
     }
 
     public void addGame(Game newGame) {
-        articleRepository.addGame(newGame);
+        articleRepositoryImpl.addGame(newGame);
     }
 
     public void addLp(Lp newLp) {
-        articleRepository.addLp(newLp);
+        articleRepositoryImpl.addLp(newLp);
     }
 
     public List<Article> articleListConverter(Orders order) {
