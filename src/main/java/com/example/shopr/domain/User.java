@@ -1,7 +1,7 @@
 package com.example.shopr.domain;
 
 
-import com.example.shopr.domainenums.Authorization;
+import com.example.shopr.domainenums.Auth;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.Fetch;
@@ -16,7 +16,7 @@ import java.util.List;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
+@Table(name = "webUser")
 public class User {
 
     @Id
@@ -24,7 +24,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String user;
+    private String webUser;
     @Column(nullable = false)
     private String password;
 
@@ -37,7 +37,7 @@ public class User {
     private String message;
 
     @Enumerated(EnumType.STRING)
-    private Authorization authorization;
+    private Auth auth;
 
     @OneToMany(orphanRemoval=true ,fetch = FetchType.EAGER , cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")

@@ -2,7 +2,7 @@ package com.example.shopr.controllers;
 
 
 import com.example.shopr.domain.*;
-import com.example.shopr.domainenums.Authorization;
+import com.example.shopr.domainenums.Auth;
 import com.example.shopr.domainenums.BookGenre;
 import com.example.shopr.domainenums.GameGenre;
 import com.example.shopr.domainenums.LpGenre;
@@ -55,13 +55,13 @@ public class IndexController {
 
     @PostMapping(value = "/chosenUser")
     public String splitProgram(Model model , @ModelAttribute User newUser){
-        if(userService.findPass(newUser.getUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUser()).equals(Authorization.EMPLOYEE)){
+        if(userService.findPass(newUser.getWebUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getWebUser()).equals(Auth.EMPLOYEE)){
             model.addAttribute("allArticles" , articleService.getAll());
 
             return "allArticlesEmp";
-        }else if(userService.findPass(newUser.getUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUser()).equals(Authorization.CLIENT)){
+        }else if(userService.findPass(newUser.getWebUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getWebUser()).equals(Auth.CLIENT)){
             model.addAttribute("allArticles" ,articleService.getAll());
-            model.addAttribute("userId" , userService.findId(newUser.getUser()));
+            model.addAttribute("userId" , userService.findId(newUser.getWebUser()));
             return "allArticlesClient";
         }else {
             return "error2";
@@ -77,7 +77,7 @@ public class IndexController {
 
     @PostMapping(value = "/register")
     public String register(Model model , @ModelAttribute User registerNewUser){
-        registerNewUser.setAuthorization(Authorization.valueOf("CLIENT"));
+        registerNewUser.setAuth(Auth.valueOf("CLIENT"));
         contactService.saveContact(registerNewUser);
         return "redirect:/";
     }

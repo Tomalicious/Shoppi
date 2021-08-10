@@ -1,7 +1,7 @@
 package com.example.shopr.repositories;
 
 
-import com.example.shopr.domainenums.Authorization;
+import com.example.shopr.domainenums.Auth;
 import com.example.shopr.domain.User;
 import org.springframework.stereotype.Repository;
 
@@ -21,22 +21,22 @@ public class UserRepository {
         return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
-    public Authorization findAuth(String user) {
-        TypedQuery query = entityManager.createQuery("select u from User u where u.user = :username" , User.class);
+    public Auth findAuth(String user) {
+        TypedQuery query = entityManager.createQuery("select u from User u where u.webUser = :username" , User.class);
         query.setParameter("username" , user);
         User users = (User) query.getSingleResult();
-        return users.getAuthorization();
+        return users.getAuth();
     }
 
     public String findPass(String user) {
-        TypedQuery query = entityManager.createQuery("select u from User u where u.user = :username" , User.class);
+        TypedQuery query = entityManager.createQuery("select u from User u where u.webUser = :username" , User.class);
         query.setParameter("username" , user);
         User users = (User) query.getSingleResult();
         return users.getPassword();
     }
 
     public Long findId(String user) {
-        TypedQuery query = entityManager.createQuery("select u from User u where u.user = :username" , User.class);
+        TypedQuery query = entityManager.createQuery("select u from User u where u.webUser = :username" , User.class);
         query.setParameter("username" , user);
         User users = (User) query.getSingleResult();
         return users.getId();

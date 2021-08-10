@@ -1,7 +1,7 @@
 package com.example.shopr.services;
 
 
-import com.example.shopr.domainenums.Authorization;
+import com.example.shopr.domainenums.Auth;
 import com.example.shopr.domain.User;
 import com.example.shopr.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class UserService {
         return userRepository.getUsers();
     }
 
-    public Authorization findAuth(String user) {
+    public Auth findAuth(String user) {
         return userRepository.findAuth(user);
     }
 
