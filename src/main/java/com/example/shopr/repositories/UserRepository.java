@@ -22,22 +22,22 @@ public class UserRepository {
     }
 
     public Auth findAuth(String user) {
-        TypedQuery query = entityManager.createQuery("select u from User u where u.webUser = :username" , User.class);
-        query.setParameter("username" , user);
+        TypedQuery query = entityManager.createQuery("select u from User u where u.username = :user" , User.class);
+        query.setParameter("user" , user);
         User users = (User) query.getSingleResult();
         return users.getAuth();
     }
 
     public String findPass(String user) {
-        TypedQuery query = entityManager.createQuery("select u from User u where u.webUser = :username" , User.class);
-        query.setParameter("username" , user);
+        TypedQuery query = entityManager.createQuery("select u from User u where u.username = :user" , User.class);
+        query.setParameter("user" , user);
         User users = (User) query.getSingleResult();
         return users.getPassword();
     }
 
     public Long findId(String user) {
-        TypedQuery query = entityManager.createQuery("select u from User u where u.webUser = :username" , User.class);
-        query.setParameter("username" , user);
+        TypedQuery query = entityManager.createQuery("select u from User u where u.username = :user" , User.class);
+        query.setParameter("user" , user);
         User users = (User) query.getSingleResult();
         return users.getId();
     }

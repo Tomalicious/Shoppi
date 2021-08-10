@@ -55,13 +55,13 @@ public class IndexController {
 
     @PostMapping(value = "/chosenUser")
     public String splitProgram(Model model , @ModelAttribute User newUser){
-        if(userService.findPass(newUser.getWebUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getWebUser()).equals(Auth.EMPLOYEE)){
+        if(userService.findPass(newUser.getUsername()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUsername()).equals(Auth.EMPLOYEE)){
             model.addAttribute("allArticles" , articleService.getAll());
 
             return "allArticlesEmp";
-        }else if(userService.findPass(newUser.getWebUser()).equals(newUser.getPassword()) && userService.findAuth(newUser.getWebUser()).equals(Auth.CLIENT)){
+        }else if(userService.findPass(newUser.getUsername()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUsername()).equals(Auth.CLIENT)){
             model.addAttribute("allArticles" ,articleService.getAll());
-            model.addAttribute("userId" , userService.findId(newUser.getWebUser()));
+            model.addAttribute("userId" , userService.findId(newUser.getUsername()));
             return "allArticlesClient";
         }else {
             return "error2";

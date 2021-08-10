@@ -24,7 +24,7 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String webUser;
+    private String username;
     @Column(nullable = false)
     private String password;
 
