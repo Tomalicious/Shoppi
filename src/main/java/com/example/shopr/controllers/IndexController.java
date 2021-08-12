@@ -111,6 +111,7 @@ public class IndexController {
             model.addAttribute("genreList" , GameGenre.values());
             model.addAttribute("newGame" , new Game());
             return "addingGame";
+
         }
     }
 
