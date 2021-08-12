@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <tr>
-                <th data-field="id" style="text-align:center" th:text="${lp.getType()}"></th>
+                <th data-field="id" style="text-align:center" th:text="${lp.getArticleType()}"></th>
                 <td data-field="id" style="text-align:center" th:text="${lp.getTitle()}"></td>
                 <td data-field="id" style="text-align:center" th:text="${lp.getPrice()}"></td>
                 <td data-field="id" style="text-align:center" th:text="${lp.getPublisher()}"></td>
@@ -35,7 +35,7 @@
                 <td data-field="id" style="text-align:center" th:text="${lp.getPerformer()}"></td>
                 <td data-field="id" style="text-align:center" th:text="${lp.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticle/{id}/{type}/{userId}(id=${lp.getId()},type=${lp.getType()}, userId=${userId} )}"><i class="material-icons">shopping_basket</i></a>
+                    <a th:href="@{/shopArticle/{id}/{type}/{userId}(id=${lp.getId()},type=${lp.getArticleType()}, userId=${userId} )}"><i class="material-icons">shopping_basket</i></a>
                 </td>
             </tr>
             </tbody>

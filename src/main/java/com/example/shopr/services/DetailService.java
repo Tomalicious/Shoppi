@@ -11,11 +11,11 @@ public class DetailService {
     private ArticleRepositoryImpl articleRepositoryImpl;
 
     public Article findById(Long id , String type) {
-       return articleRepositoryImpl.findAll().stream().filter(article -> (article.getId() == id && article.getType().equals(type))).findFirst().get();
+       return articleRepositoryImpl.findAll().stream().filter(article -> (article.getId() == id && article.getArticleType().equals(type))).findFirst().get();
 
     }
 
     public void removeArticleById(Long id , String type) {
-        articleRepositoryImpl.removeArticle(articleRepositoryImpl.findAll().stream().filter(article -> (article.getId() == id && article.getType().equals(type))).findFirst().get());
+        articleRepositoryImpl.removeArticle(articleRepositoryImpl.findAll().stream().filter(article -> (article.getId() == id && article.getArticleType().equals(type))).findFirst().get());
     }
 }

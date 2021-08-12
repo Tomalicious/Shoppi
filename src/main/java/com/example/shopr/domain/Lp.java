@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
-@DiscriminatorColumn(name = "type")
+@DiscriminatorColumn(name = "articleType")
 @DiscriminatorValue(value = "LP")
 @EqualsAndHashCode(callSuper = true)
 @Data

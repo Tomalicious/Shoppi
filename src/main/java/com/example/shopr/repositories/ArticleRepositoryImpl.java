@@ -21,9 +21,9 @@ public class ArticleRepositoryImpl implements ArticleRepository, ArticleLookup {
     @Override
     public List<Article> findAll() {
         List<Article> articleList = new ArrayList<>();
-        List<Game> gamesList = entityManager.createQuery("select g from Game g order by g.type , g.title , g.publisher, g.price ", Game.class).getResultList();
-        List<Lp> lpList = entityManager.createQuery("select l from Lp l order by l.type , l.title, l.publisher , l.price", Lp.class).getResultList();
-        List<Book> bookList = entityManager.createQuery("select b from Book b order by b.type , b.title , b.author , b.publisher , b.price", Book.class).getResultList();
+        List<Game> gamesList = entityManager.createQuery("select g from Game g order by g.articleType , g.title , g.publisher, g.price ", Game.class).getResultList();
+        List<Lp> lpList = entityManager.createQuery("select l from Lp l order by l.articleType , l.title, l.publisher , l.price", Lp.class).getResultList();
+        List<Book> bookList = entityManager.createQuery("select b from Book b order by b.articleType , b.title , b.author , b.publisher , b.price", Book.class).getResultList();
         articleList.addAll(bookList);
         articleList.addAll(gamesList);
         articleList.addAll(lpList);

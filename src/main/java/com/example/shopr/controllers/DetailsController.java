@@ -24,7 +24,7 @@ public class DetailsController {
         model.addAttribute("lp", detailService.findById(id , type));
         if (detailService.findById(id , type).getClass() == BookFiction.class || detailService.findById(id , type).getClass() == BookNonFiction.class) {
             Book book = (Book) detailService.findById(id , type);
-            if(book.getType().equals("FICTION")){
+            if(book.getArticleType().equals("FICTION")){
                 BookFiction bookfiction = (BookFiction) book;
                 model.addAttribute("book" , bookfiction);
                 return "detailsBookFiction";
@@ -51,7 +51,7 @@ public class DetailsController {
         model.addAttribute("lp", detailService.findById(id , type));
         if (detailService.findById(id , type).getClass() == BookFiction.class || detailService.findById(id , type).getClass() == BookNonFiction.class) {
             Book book = (Book) detailService.findById(id , type);
-            if(book.getType().equals("FICTION")){
+            if(book.getArticleType().equals("FICTION")){
                 BookFiction bookfiction = (BookFiction) book;
                 model.addAttribute("book" , bookfiction);
                 model.addAttribute("userId" , userId);

@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <tr>
-                <th th:text="${game.getType()}"></th>
+                <th th:text="${game.getArticleType()}"></th>
                 <td th:text="${game.getTitle()}"></td>
                 <td th:text="${game.getPrice()}"></td>
                 <td th:text="${game.getPublisher()}"></td>
@@ -35,7 +35,7 @@
                 <td th:text="${game.getMinimumAge()}"></td>
                 <td th:text="${game.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticle/{id}/{type}/{userId}(id=${game.getId()},type=${game.getType()} , userId=${userId})}"><i class="material-icons">shopping_basket</i></a>
+                    <a th:href="@{/shopArticle/{id}/{type}/{userId}(id=${game.getId()},type=${game.getArticleType()} , userId=${userId})}"><i class="material-icons">shopping_basket</i></a>
                 </td>
             </tr>
             </tbody>

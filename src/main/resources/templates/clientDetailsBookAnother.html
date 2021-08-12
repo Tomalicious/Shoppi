@@ -28,7 +28,7 @@
             </thead>
             <tbody>
             <tr>
-                <th th:text="${book.getType()}"></th>
+                <th th:text="${book.getArticleType()}"></th>
                 <td th:text="${book.getTitle()}"></td>
                 <td th:text="${book.getPrice()}"></td>
                 <td th:text="${book.getPublisher()}"></td>
@@ -37,7 +37,7 @@
                 <td th:text="${subject}"></td>
                 <td th:text="${book.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}/{userId}(id=${book.getId()},type=${book.getType()} , orderId = ${orders}, userId=${userId})}"><i class="material-icons">shopping_basket</i></a>
+                    <a th:href="@{/shopArticleAnother/{id}/{type}/{orderId}/{userId}(id=${book.getId()},type=${book.getArticleType()} , orderId = ${orders}, userId=${userId})}"><i class="material-icons">shopping_basket</i></a>
                 </td>
 
 

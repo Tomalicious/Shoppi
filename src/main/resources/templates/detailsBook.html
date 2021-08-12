@@ -29,7 +29,7 @@
             </thead>
             <tbody>
             <tr>
-                <th th:text="${book.getType()}"></th>
+                <th th:text="${book.getArticleType()}"></th>
                 <td th:text="${book.getTitle()}"></td>
                 <td th:text="${book.getPrice()}"></td>
                 <td th:text="${book.getPublisher()}"></td>
@@ -38,10 +38,10 @@
                 <td th:text="${subject}"></td>
                 <td th:text="${book.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/editArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span class="material-icons">edit</span></a>
+                    <a th:href="@{/editArticle/{id}/{type}(id=${book.getId()},type=${book.getArticleType()} )}"><span class="material-icons">edit</span></a>
                 </td>
                 <td style="text-align:center">
-                    <a th:href="@{/removeArticle/{id}/{type}(id=${book.getId()},type=${book.getType()} )}"><span class="material-icons">delete</span></a>
+                    <a th:href="@{/removeArticle/{id}/{type}(id=${book.getId()},type=${book.getArticleType()} )}"><span class="material-icons">delete</span></a>
                 </td>
 
 

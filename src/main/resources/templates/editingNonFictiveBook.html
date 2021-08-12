@@ -9,7 +9,7 @@
 
 <h1 style="color: #710c0f;">Editing A Non Fictive Book</h1>
 
-<form method="post"  th:action="@{/editBookNon/{id}/{type}(id = ${books.getId()} , type = ${books.getType()})}" th:object="${newBook}" style="margin-top: 20px">
+<form method="post" th:action="@{/editBookNon/{id}/{type}(id = ${books.getId()} , type = ${books.getArticleType()})}" th:object="${newBook}" style="margin-top: 20px">
         <div class="row">
             <div class="col-md-4 form-row offset-md-2">
                 <label for="title" class="form-label">Title</label>

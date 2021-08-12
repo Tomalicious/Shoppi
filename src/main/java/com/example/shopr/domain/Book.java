@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @EqualsAndHashCode(callSuper = true)
-@DiscriminatorColumn(name ="type")
+@DiscriminatorColumn(name ="articleType")
 @Data
 @Entity
 @SuperBuilder

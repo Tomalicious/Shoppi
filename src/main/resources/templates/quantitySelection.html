@@ -9,7 +9,7 @@
 
 <h1 style="color: #710c0f;">Please Select Quantity <Article></Article></h1>
 
-<form method="post" th:action="@{/addingAnotherOrProceed/{id}/{type}/{userId}(id = ${article.getId()} , type = ${article.getType()}, userId=${userId})}" th:object="${newQuantity}" style="margin-top: 20px">
+<form method="post" th:action="@{/addingAnotherOrProceed/{id}/{type}/{userId}(id = ${article.getId()} , type = ${article.getArticleType()}, userId=${userId})}" th:object="${newQuantity}" style="margin-top: 20px">
 
     <div class="row">
         <div class="col-md-4 form-row offset-md-2">

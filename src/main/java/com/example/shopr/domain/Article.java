@@ -23,7 +23,7 @@ public abstract class Article {
     private Long id;
 
     @Column(insertable = false, updatable = false , nullable = false)
-    private String type;
+    private String articleType;
     @Column(nullable = false, length = 100)
     private String title;
     @Column(nullable = false)

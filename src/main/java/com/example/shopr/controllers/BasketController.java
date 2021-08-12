@@ -131,7 +131,7 @@ public class BasketController {
         model.addAttribute("lp", detailService.findById(id, type));
         if (detailService.findById(id, type).getClass() == BookFiction.class || detailService.findById(id, type).getClass() == BookNonFiction.class) {
             Book book = (Book) detailService.findById(id, type);
-            if (book.getType().equals("FICTION")) {
+            if (book.getArticleType().equals("FICTION")) {
                 model.addAttribute("orders", orderId);
                 BookFiction bookfiction = (BookFiction) book;
                 model.addAttribute("book", bookfiction);
@@ -228,17 +228,17 @@ public class BasketController {
         }
 
         model.addAttribute("gamesType", "GAME");
-        model.addAttribute("totalAmountGames", Math.round(totalAmountGames *100.0)/100);
-        model.addAttribute("totalPerTypeGames", Math.round(totalPerTypeGame*100.0)/100);
+        model.addAttribute("totalAmountGames", totalAmountGames);
+        model.addAttribute("totalPerTypeGames", totalPerTypeGame);
         model.addAttribute("lpType", "LP");
-        model.addAttribute("totalAmountLp", Math.round(totalAmountLp*100.0)/100);
-        model.addAttribute("totalPerTypeLp", Math.round(totalPerTypeLp * 100.0)/100);
+        model.addAttribute("totalAmountLp", totalAmountLp);
+        model.addAttribute("totalPerTypeLp", totalPerTypeLp);
         model.addAttribute("bookFictionType", "FICTION");
-        model.addAttribute("totalAmountFiction", Math.round(totalAmountBookFiction * 100.0)/100);
-        model.addAttribute("totalPerTypeFiction", Math.round(totalPerTypeBookFiction * 100.0)/100);
+        model.addAttribute("totalAmountFiction", totalAmountBookFiction);
+        model.addAttribute("totalPerTypeFiction", totalPerTypeBookFiction);
         model.addAttribute("bookNonFictionType", "NON FICTION");
-        model.addAttribute("totalAmountBookNon", Math.round(totalAmountBookNonFiction*100.0)/100);
-        model.addAttribute("totalPerTypeBookNon", Math.round(totalPerTypeBookNonFiction*100.0)/100);
+        model.addAttribute("totalAmountBookNon", totalAmountBookNonFiction);
+        model.addAttribute("totalPerTypeBookNon", totalPerTypeBookNonFiction);
         model.addAttribute("allArticles", articles);
         model.addAttribute("totalPrices", totalPricePerArticle);
         model.addAttribute("totalOrder", totalPriceOrder/2);

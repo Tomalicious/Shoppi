@@ -28,7 +28,7 @@
             </thead>
             <tbody>
             <tr>
-                <th th:text="${game.getType()}"></th>
+                <th th:text="${game.getArticleType()}"></th>
                 <td th:text="${game.getTitle()}"></td>
                 <td th:text="${game.getPrice()}"></td>
                 <td th:text="${game.getPublisher()}"></td>
@@ -36,10 +36,10 @@
                 <td th:text="${game.getMinimumAge()}"></td>
                 <td th:text="${game.getStock()}"></td>
                 <td style="text-align:center">
-                    <a th:href="@{/editArticle/{id}/{type}(id=${game.getId()},type=${game.getType()} )}"><span class="material-icons">edit</span></a>
+                    <a th:href="@{/editArticle/{id}/{type}(id=${game.getId()},type=${game.getArticleType()} )}"><span class="material-icons">edit</span></a>
                 </td>
                 <td style="text-align:center">
-                    <a th:href="@{/removeArticle/{id}/{type}(id=${game.getId()},type=${game.getType()} )}"><span
+                    <a th:href="@{/removeArticle/{id}/{type}(id=${game.getId()},type=${game.getArticleType()} )}"><span
                             class="material-icons">delete</span></a>
                 </td>
             </tr>
