@@ -20,10 +20,12 @@ public class SupplierRepository {
     public Long getMaxId() {
         List<Supplier> suppliers = entityManager.createQuery("select s from Supplier s", Supplier.class).getResultList();
         List<Long> longs = new ArrayList<>();
+        Long counter = 0L;
         for(Supplier s : suppliers){
             longs.add(s.getId());
+            counter++;
         }
-        return Collections.max(longs);
+        return counter;
 
     }
 
