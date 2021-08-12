@@ -228,17 +228,17 @@ public class BasketController {
         }
 
         model.addAttribute("gamesType", "GAME");
-        model.addAttribute("totalAmountGames", totalAmountGames);
-        model.addAttribute("totalPerTypeGames", totalPerTypeGame);
+        model.addAttribute("totalAmountGames", Math.round(totalAmountGames *100.0)/100);
+        model.addAttribute("totalPerTypeGames", Math.round(totalPerTypeGame*100.0)/100);
         model.addAttribute("lpType", "LP");
-        model.addAttribute("totalAmountLp", totalAmountLp);
-        model.addAttribute("totalPerTypeLp", totalPerTypeLp);
+        model.addAttribute("totalAmountLp", Math.round(totalAmountLp*100.0)/100);
+        model.addAttribute("totalPerTypeLp", Math.round(totalPerTypeLp * 100.0)/100);
         model.addAttribute("bookFictionType", "FICTION");
-        model.addAttribute("totalAmountFiction", totalAmountBookFiction);
-        model.addAttribute("totalPerTypeFiction", totalPerTypeBookFiction);
+        model.addAttribute("totalAmountFiction", Math.round(totalAmountBookFiction * 100.0)/100);
+        model.addAttribute("totalPerTypeFiction", Math.round(totalPerTypeBookFiction * 100.0)/100);
         model.addAttribute("bookNonFictionType", "NON FICTION");
-        model.addAttribute("totalAmountBookNon", totalAmountBookNonFiction);
-        model.addAttribute("totalPerTypeBookNon", totalPerTypeBookNonFiction);
+        model.addAttribute("totalAmountBookNon", Math.round(totalAmountBookNonFiction*100.0)/100);
+        model.addAttribute("totalPerTypeBookNon", Math.round(totalPerTypeBookNonFiction*100.0)/100);
         model.addAttribute("allArticles", articles);
         model.addAttribute("totalPrices", totalPricePerArticle);
         model.addAttribute("totalOrder", totalPriceOrder/2);
