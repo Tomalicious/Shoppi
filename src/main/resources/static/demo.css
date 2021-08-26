@@ -23,6 +23,7 @@ body {
     background-image: url(https://www.publicdomainpictures.net/pictures/130000/velka/gray-haze-background.jpg);
     background-size: cover;
     color:#212529;
+    background-repeat: no-repeat;
 }
 h1 {
     color: white;
