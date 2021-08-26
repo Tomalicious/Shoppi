@@ -25,7 +25,6 @@ public class ContactService {
     }
 
     public void saveContact(User registerNewUser) {
-
         contactRepository.saveContact(registerNewUser);
 
     }
