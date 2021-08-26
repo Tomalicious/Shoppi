@@ -5,6 +5,7 @@ import com.example.shopr.domain.*;
 import com.example.shopr.repositories.ArticleRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 @Service
 public class DetailService {
     @Autowired
