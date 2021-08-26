@@ -16,21 +16,19 @@ import java.util.List;
 
 @Controller
 public class BasketController {
-
-    @Autowired
     private UserService userService;
-
-    @Autowired
     private DetailService detailService;
-
-    @Autowired
     private ArticleService articleService;
-
-    @Autowired
     private OrderService orderService;
-
-    @Autowired
     private SupplierService supplierService;
+
+    public BasketController(UserService userService, DetailService detailService, ArticleService articleService, OrderService orderService, SupplierService supplierService) {
+        this.userService = userService;
+        this.detailService = detailService;
+        this.articleService = articleService;
+        this.orderService = orderService;
+        this.supplierService = supplierService;
+    }
 
     @GetMapping(value = "/shopArticle/{id}/{type}/{userId}")
     public String showBasketAmount(Model model, @PathVariable("id") Long id, @PathVariable("type") String type, @PathVariable("userId") Long userId) {

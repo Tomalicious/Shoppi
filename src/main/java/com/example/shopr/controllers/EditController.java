@@ -88,5 +88,12 @@ public class EditController {
         return "allArticlesEmp";
     }
 
+    @PostMapping(value = "/removeArticle/{id}/{type}")
+    public String removeArticle(@ModelAttribute Lp lp , Model model) {
+        editService.updateLp(lp);
+        model.addAttribute("allArticles" , articleService.getAll());
+        return "allArticlesEmp";
+    }
+
 
 }
