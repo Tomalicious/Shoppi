@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 public class IndexController {
@@ -55,11 +56,11 @@ public class IndexController {
 
     @PostMapping(value = "/chosenUser")
     public String splitProgram(Model model , @ModelAttribute User newUser){
-        if(userService.findPass(newUser.getUsername()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUsername()).equals(Auth.EMPLOYEE)){
+        if(userService.findPass(newUser.getUsername().toLowerCase(Locale.ROOT)).equals(newUser.getPassword()) && userService.findAuth(newUser.getUsername()).equals(Auth.EMPLOYEE)){
             model.addAttribute("allArticles" , articleService.getAll());
 
             return "allArticlesEmp";
-        }else if(userService.findPass(newUser.getUsername()).equals(newUser.getPassword()) && userService.findAuth(newUser.getUsername()).equals(Auth.CLIENT)){
+        }else if(userService.findPass(newUser.getUsername().toLowerCase(Locale.ROOT)).equals(newUser.getPassword()) && userService.findAuth(newUser.getUsername()).equals(Auth.CLIENT)){
             model.addAttribute("allArticles" ,articleService.getAll());
             model.addAttribute("userId" , userService.findId(newUser.getUsername()));
             return "allArticlesClient";
@@ -78,6 +79,8 @@ public class IndexController {
     @PostMapping(value = "/register")
     public String register(Model model , @ModelAttribute User registerNewUser){
         registerNewUser.setAuth(Auth.valueOf("CLIENT"));
+        registerNewUser.setUsername(registerNewUser.getUsername().toLowerCase(Locale.ROOT));
+        registerNewUser.setPassword(registerNewUser.getPassword().toLowerCase(Locale.ROOT));
         contactService.saveContact(registerNewUser);
         return "redirect:/";
     }
