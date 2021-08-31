@@ -7,3 +7,4 @@ INSERT INTO supplier (id) VALUES ('3');
 INSERT INTO supplier(id) VALUES ('4');
 INSERT INTO supplier (id) VALUES ('5');
 INSERT INTO supplier (id) VALUES ('6');
+INSERT INTO supplier (id) VALUES ('7');
